@@ -1,0 +1,32 @@
+{
+ "id": "20261012105803-9bdf32ec",
+ "bot": "video-creator",
+ "created": "2026-10-12T10:58:03Z",
+ "cmd": [
+  "ffmpeg",
+  "-stream_loop",
+  "28",
+  "-i",
+  "{in:space_loop.mp4}",
+  "-t",
+  "3600",
+  "-c:v",
+  "copy",
+  "-af",
+  "loudnorm=I=-14:TP=-1.5:LRA=11,afade=t=in:d=3,afade=t=out:st=3594:d=6",
+  "-c:a",
+  "aac",
+  "-b:a",
+  "192k",
+  "-movflags",
+  "+faststart",
+  "{out:ambient-space-01_60min.mp4}"
+ ],
+ "inputs": [
+  "space_loop.mp4"
+ ],
+ "outputs": [
+  "ambient-space-01_60min.mp4"
+ ],
+ "sig": "7ac795a697b8bc20e372d68813730d49ed6ee0bba2fa5631d2e84f1058516a07"
+}
