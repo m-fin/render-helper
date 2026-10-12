@@ -1,0 +1,27 @@
+{
+ "id": "20261012103824-507243f1",
+ "bot": "shorty",
+ "created": "2026-10-12T10:38:24Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-v",
+  "error",
+  "-f",
+  "lavfi",
+  "-i",
+  "color=c=gray:s=320x240:d=1",
+  "-vf",
+  "drawtext=fontfile={in:Anton-Regular.ttf}:text=HI:fontsize=60:fontcolor=yellow:borderw=4",
+  "-frames:v",
+  "1",
+  "{out:t.png}"
+ ],
+ "inputs": [
+  "Anton-Regular.ttf"
+ ],
+ "outputs": [
+  "t.png"
+ ],
+ "sig": "297f19d865a913eb7ab1b85d1f04d6670fe4e515089a78c47434382b1e26f2fc"
+}
