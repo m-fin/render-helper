@@ -1,0 +1,22 @@
+{
+ "exit_code": 8,
+ "log_tail": "[AVFilterGraph @ 0x988c10400] No such filter: 'ass'\nError opening output file /var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012103729-7162909b-thyf_l6s/out/t.png.\nError opening output files: Filter not found\n",
+ "at": "2026-10-12T10:38:03Z",
+ "stats": {
+  "job_id": "20261012103729-7162909b",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:38:03Z",
+  "exit_code": 8,
+  "wall_s": 0.091,
+  "cpu_s": 0.085,
+  "input_bytes": 174518,
+  "output_bytes": 0,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.001,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
