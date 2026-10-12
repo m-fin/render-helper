@@ -1,0 +1,22 @@
+{
+ "exit_code": 234,
+ "log_tail": "[Parsed_crop_12 @ 0xb14fec000] Failed to configure input pad on Parsed_crop_12\n[fc#0 @ 0xb14c24000] Error reinitializing filters!\n[fc#0 @ 0xb14c24000] Task finished with error code: -22 (Invalid argument)\n[fc#0 @ 0xb14c24000] Terminating thread with return code -22 (Invalid argument)\n[vost#0:0/libx264 @ 0xb14c58000] [enc:libx264 @ 0xb14e42a00] Could not open encoder before EOF\n[vost#0:0/libx264 @ 0xb14c58000] Task finished with error code: -22 (Invalid argument)\n[vost#0:0/libx264 @ 0xb14c58000] Terminating thread with return code -22 (Invalid argument)\n[aost#0:1/aac @ 0xb14c58300] [enc:aac @ 0xb14e42bc0] Could not open encoder before EOF\n[aost#0:1/aac @ 0xb14c58300] Task finished with error code: -22 (Invalid argument)\n[aost#0:1/aac @ 0xb14c58300] Terminating thread with return code -22 (Invalid argument)\n[out#0/mp4 @ 0xb14c0cf00] Nothing was written into output file, because at least one of its streams received no packets.\n",
+ "at": "2026-10-12T10:42:51Z",
+ "stats": {
+  "job_id": "20261012104123-9817fbe9",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:42:51Z",
+  "exit_code": 234,
+  "wall_s": 1.013,
+  "cpu_s": 1.39,
+  "input_bytes": 127147714,
+  "output_bytes": 0,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.023,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
