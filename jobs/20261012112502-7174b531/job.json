@@ -1,0 +1,49 @@
+{
+ "id": "20261012112502-7174b531",
+ "bot": "content-writer",
+ "created": "2026-10-12T11:25:02Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-i",
+  "{in:loop120v2.mp4}",
+  "-ss",
+  "30",
+  "-i",
+  "{in:audio60_v2.flac}",
+  "-t",
+  "45",
+  "-vf",
+  "fade=in:d=4,fade=out:st=41:d=4",
+  "-af",
+  "loudnorm=I=-16:TP=-1.5:LRA=11,aresample=44100,afade=t=in:d=4,afade=t=out:st=41:d=4",
+  "-c:v",
+  "libx264",
+  "-b:v",
+  "3M",
+  "-maxrate",
+  "3.2M",
+  "-bufsize",
+  "6.4M",
+  "-pix_fmt",
+  "yuv420p",
+  "-video_track_timescale",
+  "15360",
+  "-c:a",
+  "aac",
+  "-b:a",
+  "192k",
+  "-movflags",
+  "+faststart",
+  "{out:01-preview-v2.mp4}"
+ ],
+ "inputs": [
+  "loop120v2.mp4",
+  "audio60_v2.flac"
+ ],
+ "outputs": [
+  "01-preview-v2.mp4"
+ ],
+ "exact_encoder": true,
+ "sig": "9fde8ccf1132284e9775b1e35e66adaa6c48db948c56ecc5e7c7887e3c289287"
+}
