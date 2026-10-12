@@ -1,0 +1,48 @@
+{
+ "id": "20261012103525-78274056",
+ "bot": "shorty",
+ "created": "2026-10-12T10:35:25Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-v",
+  "error",
+  "-i",
+  "{in:master.mp4}",
+  "-filter_complex",
+  "[0:v]trim=150.758:187.880,setpts=PTS-STARTPTS,fps=30,crop=1920:1006:0:74,split[x][y];[x]scale=1080:-2[fg];[y]scale=-2:1920,crop=1080:1920,boxblur=30:3,eq=brightness=-0.12[bg];[bg][fg]overlay=0:390,format=yuv420p,ass={in:2026-10-12-cabinfilter-1.ass}:fontsdir=.,fade=t=in:d=0.12,fade=t=out:st=36.872:d=0.25[vout];[0:a]atrim=150.758:187.880,asetpts=PTS-STARTPTS,afade=t=in:d=0.05,afade=t=out:st=36.922:d=0.2[aout]",
+  "-map",
+  "[vout]",
+  "-map",
+  "[aout]",
+  "-c:v",
+  "libx264",
+  "-preset",
+  "medium",
+  "-crf",
+  "19",
+  "-pix_fmt",
+  "yuv420p",
+  "-r",
+  "30",
+  "-c:a",
+  "aac",
+  "-b:a",
+  "192k",
+  "-ar",
+  "48000",
+  "-movflags",
+  "+faststart",
+  "{out:final.mp4}"
+ ],
+ "inputs": [
+  "master.mp4",
+  "2026-10-12-cabinfilter-1.ass",
+  "Anton-Regular.ttf"
+ ],
+ "outputs": [
+  "final.mp4"
+ ],
+ "exact_encoder": true,
+ "sig": "ccd8fbeb5d31816a84ca301819897d6099a8675d5114650920a9e356d0c795cd"
+}
