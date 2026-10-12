@@ -1,0 +1,24 @@
+{
+ "id": "20261012104040-327b01cd",
+ "bot": "drifthome",
+ "created": "2026-10-12T10:40:40Z",
+ "cmd": [
+  "capture"
+ ],
+ "inputs": [
+  "game.tar"
+ ],
+ "outputs": [
+  "drifthome_cabin_1920x1080.mp4"
+ ],
+ "capture": {
+  "bundle": "game.tar",
+  "seed": 1,
+  "w": 1920,
+  "h": 1080,
+  "limit": 0,
+  "out": "drifthome_cabin_1920x1080.mp4",
+  "bundle_sha256": "094059d9e206ae990bc01958965ca45497becfd3f22138a04843843322fcfaa3"
+ },
+ "sig": "daa3859a7336b3574d47d2c48700cc7de9dfd4da9989ee5d036a72e361c3b576"
+}
