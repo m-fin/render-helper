@@ -1,0 +1,30 @@
+{
+ "id": "20261012103729-7162909b",
+ "bot": "shorty",
+ "created": "2026-10-12T10:37:29Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-v",
+  "error",
+  "-f",
+  "lavfi",
+  "-i",
+  "color=c=gray:s=1080x1920:d=3",
+  "-vf",
+  "ass=filename='{in:2026-10-12-cabinfilter-1.ass}':fontsdir=in",
+  "-ss",
+  "1",
+  "-frames:v",
+  "1",
+  "{out:t.png}"
+ ],
+ "inputs": [
+  "2026-10-12-cabinfilter-1.ass",
+  "Anton-Regular.ttf"
+ ],
+ "outputs": [
+  "t.png"
+ ],
+ "sig": "e9921c7260b18cde888bb8cc58a7483536c89745c9c84ac37d21df86952bdfd9"
+}
