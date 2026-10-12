@@ -1,0 +1,20 @@
+{
+ "id": "20261012101947-397d102f",
+ "bot": "rh-status-test",
+ "created": "2026-10-12T10:19:47Z",
+ "cmd": [
+  "ffmpeg",
+  "-f",
+  "lavfi",
+  "-i",
+  "testsrc=d=1:s=64x64",
+  "-c:v",
+  "libx264",
+  "{out:t.mp4}"
+ ],
+ "inputs": [],
+ "outputs": [
+  "t.mp4"
+ ],
+ "sig": "326bf13e9589c1918de84e0cbc04725b0dac8f9669ee2b022b1db23a90335754"
+}
