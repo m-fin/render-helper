@@ -86,3 +86,16 @@ prints a one-line summary.
 
 ## Tests
 `python3 -m unittest -v test_rh` (ffmpeg and HTTP are mocked; nothing renders).
+
+## Tailscale file transfer (optional)
+
+The worker runs with `--xfer`: a signed file endpoint on the Mac's Tailscale address only
+(`tailscale ip -4`, must be in 100.64.0.0/10; it refuses to start otherwise and never binds 0.0.0.0), port 8765.
+Every request is HMAC-signed with RH_HMAC_KEY plus a timestamp (5 min window) and a one-time nonce.
+Files live in `~/Library/Application Support/macrenderhelper/xfer/<job_id>/{in,out}`; names are plain
+file names only, 1.9 GB per file, 4 GB per job, sha256 checked on every upload and download.
+Input hashes are pinned in the signed job; output hashes come back in a signed done.json.
+
+Box side: `rh_submit.py --transport tailscale ...` pushes inputs and pulls outputs over the endpoint
+(through `tailscale nc`, or a SOCKS5 proxy if `RH_XFER_SOCKS=host:port` is set). The job queue stays
+on GitHub; no release is made. If the endpoint doesn't answer, it falls back to `--transport github`.

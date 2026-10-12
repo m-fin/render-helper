@@ -6,11 +6,13 @@ Secrets come from the macOS Keychain:
   security find-generic-password -s macrenderhelper-hmac -w
 """
 import argparse, datetime, json, os, platform, resource, shutil, socket, subprocess, sys, tempfile, threading, time, uuid
+from rh_xfer import file_sha256, purge_old, serve_tailscale
 from rh_common import (GitHub, Conflict, verify_job, validate_job, rewrite_args,
                        prefer_videotoolbox, ValidationError, REPO, sign_obj,
                        estimate_cloud_cpu_minutes, HEARTBEAT_EVERY)
 
 HOME_DIR = os.path.expanduser("~/Library/Application Support/macrenderhelper")
+XFER_DIR = os.path.join(HOME_DIR, "xfer")  # per-job folders for the Tailscale file endpoint
 
 POLL = 15
 MAX_INPUT_TOTAL = 4 * 1024**3
@@ -190,14 +192,17 @@ def run_bench(args, env, work, ind, outd, ffmpeg_dir):
             os.remove(mkv)
 
 
-def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir="/opt/homebrew/bin"):
+def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir="/opt/homebrew/bin",
+            xfer_dir=None):
     job, _ = gh.get_file(f"jobs/{job_id}/job.json")
     tag = f"job-{job_id}"
-    stats = {}
+    stats, out_sha = {}, {}
     def finish(name, code, tail):
         doc = {"exit_code": code, "log_tail": tail[-4000:], "at": now()}
         if stats:
             doc["stats"] = stats
+        if out_sha:  # tailscale: signed output hashes so the box can verify what it pulls
+            doc = sign_obj(dict(doc, outputs_sha256=out_sha), key)
         gh.put_file(f"jobs/{job_id}/{name}", doc, f"{name} {job_id}")
     if not job or not verify_job(job, key):
         return finish("failed.json", -1, "bad or missing HMAC signature; refused")
@@ -207,16 +212,28 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir
             raise ValidationError("id mismatch")
     except ValidationError as e:
         return finish("failed.json", -1, f"rejected: {e}")
-    rel = gh.find_release(tag)
-    if not rel:
+    ts = job.get("transport") == "tailscale"
+    xjob = os.path.join(xfer_dir or XFER_DIR, job_id)
+    rel = None if ts else gh.find_release(tag)
+    if not ts and not rel:
         return finish("failed.json", -1, "release with inputs not found")
     work = tempfile.mkdtemp(prefix=f"rh-{job_id}-")
     ind, outd = os.path.join(work, "in"), os.path.join(work, "out")
     os.makedirs(ind); os.makedirs(outd)
     try:
         total = 0
-        assets = {a["name"]: a for a in rel.get("assets", [])}
-        for n in job["inputs"]:
+        assets = {a["name"]: a for a in rel.get("assets", [])} if rel else {}
+        for n in (job["inputs"] if ts else []):
+            src = os.path.join(xjob, "in", n)
+            if not os.path.isfile(src) or os.path.islink(src):
+                return finish("failed.json", -1, f"missing input {n} (tailscale)")
+            total += os.path.getsize(src)
+            if total > MAX_INPUT_TOTAL:
+                return finish("failed.json", -1, "inputs over size cap")
+            if file_sha256(src) != job["input_sha256"][n]:
+                return finish("failed.json", -1, f"input {n} sha256 mismatch; refused")
+            shutil.move(src, os.path.join(ind, n))
+        for n in ([] if ts else job["inputs"]):
             if n not in assets:
                 return finish("failed.json", -1, f"missing input {n}")
             total += assets[n].get("size", 0)
@@ -259,8 +276,13 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir
                     code, tail = -2, tail + f"\nmissing output {n}"; break
                 if os.path.getsize(fp) > MAX_OUTPUT_EACH:
                     code, tail = -3, tail + f"\noutput {n} over size cap"; break
-                with open(fp, "rb") as f:
-                    gh.upload_asset(rel, n, f.read())
+                if ts:
+                    os.makedirs(os.path.join(xjob, "out"), exist_ok=True)
+                    out_sha[n] = file_sha256(fp)
+                    shutil.move(fp, os.path.join(xjob, "out", n))
+                else:
+                    with open(fp, "rb") as f:
+                        gh.upload_asset(rel, n, f.read())
         for n in job["inputs"]:
             if n in assets:
                 gh.delete_asset(assets[n])
@@ -313,6 +335,8 @@ def main(argv=None):
     ap.add_argument("--no-videotoolbox", action="store_true")
     ap.add_argument("--once", action="store_true", help="check once and exit (test)")
     ap.add_argument("--selftest", action="store_true", help="tiny local test render, prints PASS/FAIL")
+    ap.add_argument("--xfer", action="store_true",
+                    help="serve signed job files on this Mac's Tailscale 100.x address, port 8765 only")
     a = ap.parse_args(argv)
     if a.selftest:
         return selftest(a.ffmpeg_dir, not a.no_videotoolbox)
@@ -324,6 +348,9 @@ def main(argv=None):
     worker = worker_id()
     info = mac_info(a.ffmpeg_dir)
     print(f"Mac Render Helper worker {worker} ({info['model']}, {info['ffmpeg']}) polling {a.repo}", flush=True)
+    if a.xfer and not a.once:
+        threading.Thread(target=serve_tailscale, args=(key, XFER_DIR),
+                         kwargs={"log": lambda m: print(m, flush=True)}, daemon=True).start()
     state = {"state": "idle", "job": None}
     def beat_forever():  # own thread so long renders still show 'busy', not offline
         while True:
@@ -350,6 +377,7 @@ def main(argv=None):
                         run_job(gh, jid, key, a.ffmpeg_dir, not a.no_videotoolbox,
                                 log=lambda m: print(m, flush=True), worker=worker,
                                 node_dir=a.node_dir)
+                        purge_old(XFER_DIR)  # unpulled tailscale files older than 24h
                     finally:
                         state.update(state="idle", job=None)
         except Exception as e:  # keep the agent alive through network blips

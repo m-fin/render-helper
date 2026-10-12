@@ -30,7 +30,7 @@ PY=/usr/bin/python3; [[ -x "$PY" ]] || PY="$(command -v python3)"
 
 # 2. copy files (idempotent overwrite)
 mkdir -p "$DEST" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
-cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$SRC/rh_capture.mjs" "$SRC/package.json" "$DEST/"
+cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$SRC/rh_xfer.py" "$SRC/rh_capture.mjs" "$SRC/package.json" "$DEST/"
 cp "$SRC/package-lock.json" "$DEST/" 2>/dev/null || true
 # browser capture: playwright-core from package.json/lock (no browser download; uses installed Chrome).
 # worker_id and Keychain items are left untouched, so no re-pairing.
@@ -79,7 +79,8 @@ cat > "$PLIST" <<PL
   <key>ProgramArguments</key><array>
     <string>$PY</string><string>$DEST/rh_worker.py</string>
     <string>--ffmpeg-dir</string><string>$FFDIR</string>
-    <string>--node-dir</string><string>$NODEDIR</string></array>
+    <string>--node-dir</string><string>$NODEDIR</string>
+    <string>--xfer</string></array>
   <key>WorkingDirectory</key><string>$DEST</string>
   <key>RunAtLoad</key><true/><key>KeepAlive</key><true/>
   <key>ProcessType</key><string>Background</string>
@@ -89,6 +90,7 @@ PL
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST" 2>/dev/null || launchctl load -w "$PLIST"
 echo "Background worker loaded ($LABEL). Log: $LOG"
+echo "Tailscale file endpoint: serves only on this Mac's 100.x Tailscale address, port 8765 (off until Tailscale is up)."
 
 # 5. tiny local test render (1s, 64x64)
 echo "Running test job..."

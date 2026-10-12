@@ -66,6 +66,7 @@ def validate_job(job):
     outputs = [check_name(n) for n in job["outputs"]]
     if set(inputs) & set(outputs):
         raise ValidationError("name used as both input and output")
+    validate_transport(job, inputs)
     cmd = job["cmd"]
     if cmd == ["capture"]:
         return validate_capture(job, inputs, outputs)
@@ -80,6 +81,21 @@ def validate_job(job):
     for a in cmd[1:]:
         validate_arg(a, inputs, outputs)
     return True
+
+
+def validate_transport(job, inputs):
+    """transport 'tailscale': inputs arrive over the signed Tailscale endpoint and their sha256
+    is pinned in the signed job, so the worker can check them before running."""
+    t = job.get("transport", "github")
+    if t not in ("github", "tailscale"):
+        raise ValidationError("transport must be github or tailscale")
+    if t == "tailscale":
+        hs = job.get("input_sha256")
+        if not isinstance(hs, dict) or set(hs) != set(inputs) or not all(
+                isinstance(v, str) and HEX64.match(v) for v in hs.values()):
+            raise ValidationError("tailscale jobs need input_sha256 for every input")
+    elif "input_sha256" in job:
+        raise ValidationError("input_sha256 only for tailscale transport")
 
 
 CAPTURE_KEYS = {"bundle", "bundle_sha256", "seed", "w", "h", "limit", "out"}
