@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\n[aist#0:0/pcm_s16le @ 0x91900c180] Guessed Channel Layout: mono\nInput #0, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012103559-161b09ca-c6kb87fz/in/space_drift.wav':\n  Duration: 00:02:08.00, bitrate: 705 kb/s\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\nStream mapping:\n  Stream #0:0 -> #0:0 (pcm_s16le (native) -> mp3 (libmp3lame))\nOutput #0, mp3, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012103559-161b09ca-c6kb87fz/out/space_drift_10min.mp3':\n  Metadata:\n    TSSE            : Lavf63.1.102\n  Stream #0:0: Audio: mp3, 44100 Hz, mono, s16p, 256 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 libmp3lame\nsize=    1280KiB time=00:00:42.39 bitrate= 247.3kbits/s speed=70.7x elapsed=0:00:00.59    \nsize=    2560KiB time=00:01:25.08 bitrate= 246.5kbits/s speed=  72x elapsed=0:00:01.18    \nsize=    3840KiB time=00:02:04.73 bitrate= 252.2kbits/s speed=73.9x elapsed=0:00:01.68    \nsize=    5120KiB time=00:02:47.99 bitrate= 249.7kbits/s speed=73.6x elapsed=0:00:02.28    \nsize=    6400KiB time=00:03:32.45 bitrate= 246.8kbits/s speed=73.9x elapsed=0:00:02.87    \nsize=    7936KiB time=00:04:17.01 bitrate= 252.9kbits/s speed=  74x elapsed=0:00:03.47    \nsize=    9216KiB time=00:04:55.47 bitrate= 255.5kbits/s speed=73.8x elapsed=0:00:04.00    \nsize=   10240KiB time=00:05:32.35 bitrate= 252.4kbits/s speed=73.3x elapsed=0:00:04.53    \nsize=   11776KiB time=00:06:18.43 bitrate= 254.9kbits/s speed=73.8x elapsed=0:00:05.13    \nsize=   13056KiB time=00:07:04.22 bitrate= 252.1kbits/s speed=74.1x elapsed=0:00:05.72    \nsize=   14592KiB time=00:07:48.50 bitrate= 255.1kbits/s speed=74.2x elapsed=0:00:06.31    \nsize=   15872KiB time=00:08:35.94 bitrate= 252.0kbits/s speed=74.8x elapsed=0:00:06.90    \nsize=   17408KiB time=00:09:18.99 bitrate= 255.1kbits/s speed=74.6x elapsed=0:00:07.49    \nsize=   18432KiB time=00:09:55.09 bitrate= 253.7kbits/s speed=74.3x elapsed=0:00:08.00    \n[out#0/mp3 @ 0x918c54180] video:0KiB audio:18751KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.004578%\nsize=   18752KiB time=00:10:00.00 bitrate= 256.0kbits/s speed=74.2x elapsed=0:00:08.08    \n",
+ "at": "2026-10-12T10:37:38Z",
+ "stats": {
+  "job_id": "20261012103559-161b09ca",
+  "bot": "sonic-rift-producer",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:37:38Z",
+  "exit_code": 0,
+  "wall_s": 8.197,
+  "cpu_s": 8.94,
+  "input_bytes": 11289644,
+  "output_bytes": 19201923,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.149,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
