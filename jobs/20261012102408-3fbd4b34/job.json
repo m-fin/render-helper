@@ -1,0 +1,29 @@
+{
+ "id": "20261012102408-3fbd4b34",
+ "bot": "speedtest",
+ "created": "2026-10-12T10:24:08Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-i",
+  "{in:ns217.mp4}",
+  "-c:v",
+  "h264_videotoolbox",
+  "-b:v",
+  "6M",
+  "-pix_fmt",
+  "yuv420p",
+  "-c:a",
+  "copy",
+  "-movflags",
+  "+faststart",
+  "{out:ns217_vt.mp4}"
+ ],
+ "inputs": [
+  "ns217.mp4"
+ ],
+ "outputs": [
+  "ns217_vt.mp4"
+ ],
+ "sig": "0d848dea2085f8322155d2e6074a894fdc7ac6cf8ce505a05d4dfa702edc2d39"
+}
