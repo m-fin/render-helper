@@ -1,0 +1,22 @@
+{
+ "exit_code": 234,
+ "log_tail": "[AVFilterGraph @ 0xc78c10200] No option name near '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012103525-78274056-wbpbegoy/in/2026-10-12-cabinfilter-1.ass:fontsdir=.'\n[AVFilterGraph @ 0xc78c10200] Error parsing a filter description around: ,fade=t=in:d=0.12,fade=t=out:st=36.872:d=0.25[vout];[0:a]atrim=150.758:187.880,asetpts=PTS-STARTPTS,afade=t=in:d=0.05,afade=t=out:st=36.922:d=0.2[aout]\n[AVFilterGraph @ 0xc78c10200] Error parsing filterchain '[bg][fg]overlay=0:390,format=yuv420p,ass=/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012103525-78274056-wbpbegoy/in/2026-10-12-cabinfilter-1.ass:fontsdir=.,fade=t=in:d=0.12,fade=t=out:st=36.872:d=0.25[vout];[0:a]atrim=150.758:187.880,asetpts=PTS-STARTPTS,afade=t=in:d=0.05,afade=t=out:st=36.922:d=0.2[aout]' around: ,fade=t=in:d=0.12,fade=t=out:st=36.872:d=0.25[vout];[0:a]atrim=150.758:187.880,asetpts=PTS-STARTPTS,afade=t=in:d=0.05,afade=t=out:st=36.922:d=0.2[aout]\nError : Invalid argument\n",
+ "at": "2026-10-12T10:37:13Z",
+ "stats": {
+  "job_id": "20261012103525-78274056",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:37:13Z",
+  "exit_code": 234,
+  "wall_s": 0.096,
+  "cpu_s": 0.085,
+  "input_bytes": 126715469,
+  "output_bytes": 0,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.001,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
