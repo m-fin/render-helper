@@ -252,6 +252,17 @@ class Capture(unittest.TestCase):
         r = json.load(open(os.path.join(outd, "bench_stats.json")))["results"]
         self.assertEqual(r["vt"]["args"][-1], str(int(100 * 8 / 38.0)))
         self.assertEqual(sorted(os.listdir(outd)), sorted(c.BENCH_OUTPUTS))
+    def test_bench_in_stats(self):
+        gh = FakeGH(); j = c.sign_job(job(), KEY); gh.files["jobs/t1/job.json"] = (json.dumps(j).encode(), 1)
+        rel = gh.create_release("job-t1", "job-t1"); gh.upload_asset(rel, "a.mp4", b"1")
+        def fake(args, **kw):
+            d = os.path.dirname(args[-1]); open(args[-1], "wb").write(b"x")
+            json.dump({"results": {"vt": {"exit": 0, "wall_s": 1.0, "cpu_s": 2.0, "bytes": 3, "args": []}}}, open(os.path.join(d, "bench_stats.json"), "w"))
+            return mock.Mock(returncode=0, stderr="", stdout="")
+        with mock.patch("subprocess.run", side_effect=fake):
+            w.run_job(gh, "t1", KEY, "/ff", worker="m", log=lambda m: None)
+        r = dash.load_jsonl(gh.files["stats/jobs.jsonl"][0].decode())[0]
+        self.assertEqual(r["bench"]["vt"]["wall_s"], 1.0)
     def test_mkv_ok(self):
         j = cjob(out="v.mkv"); j["outputs"] = ["v.mkv"]; self.assertTrue(c.validate_job(j))
     def test_rejects(self):

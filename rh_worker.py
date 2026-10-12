@@ -268,6 +268,11 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir
                       "exit_code": code, "wall_s": round(wall, 3), "cpu_s": cpu,
                       "input_bytes": total, "output_bytes": out_bytes,
                       "cloud_cpu_minutes_saved_estimate": estimate_cloud_cpu_minutes(cpu, wall)})
+        bpath = os.path.join(outd, "bench_stats.json")
+        if os.path.isfile(bpath):  # capture-bench: keep per-encode wall/cpu/bytes in the stats line too
+            with open(bpath) as f:
+                stats["bench"] = {k: {x: v.get(x) for x in ("exit", "wall_s", "cpu_s", "bytes")}
+                                  for k, v in json.load(f).get("results", {}).items()}
         finish("done.json" if code == 0 else "failed.json", code, tail)
         try:
             append_stats(gh, stats)
