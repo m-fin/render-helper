@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012112357-eccc1218-1d67os0t/in/loop120v2.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:02:00.00, start: 0.000000, bitrate: 1381 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 1378 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 libx264\n[out#0/mp4 @ 0xc00c50180] Codec AVOption crf (Constant Rate Factor value) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.\nStream mapping:\n  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_videotoolbox))\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012112357-eccc1218-1d67os0t/out/seam_test_v2.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, q=2-31, 30 fps, 15360 tbn (default)\n    Metadata:\n      encoder         : Lavc63.1.102 h264_videotoolbox\n      handler_name    : VideoHandler\n[h264_videotoolbox @ 0xc0103ca80] Color range not set for yuv420p. Using MPEG range.\nframe=   82 fps= 20 q=-0.0 size=     768KiB time=00:00:02.70 bitrate=2330.3kbits/s speed=0.658x elapsed=0:00:04.10    \n[out#0/mp4 @ 0xc00c50180] video:3066KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.052586%\nframe=  180 fps= 40 q=-0.0 Lsize=    3068KiB time=00:00:05.96 bitrate=4211.8kbits/s speed=1.32x elapsed=0:00:04.52    \n",
+ "at": "2026-10-12T11:24:19Z",
+ "stats": {
+  "job_id": "20261012112357-eccc1218",
+  "bot": "content-writer",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T11:24:19Z",
+  "exit_code": 0,
+  "wall_s": 5.192,
+  "cpu_s": 14.728,
+  "input_bytes": 20724069,
+  "output_bytes": 3141269,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.245,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
