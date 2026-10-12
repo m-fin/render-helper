@@ -30,7 +30,16 @@ PY=/usr/bin/python3; [[ -x "$PY" ]] || PY="$(command -v python3)"
 
 # 2. copy files (idempotent overwrite)
 mkdir -p "$DEST" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
-cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$DEST/"
+cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$SRC/rh_capture.mjs" "$SRC/package.json" "$DEST/"
+# browser capture (optional): needs Node + Google Chrome + playwright-core, installed once by hand:
+#   brew install node   and   cd "$DEST" && npm install   (the worker never installs anything)
+NODE="$(command -v node || true)"
+for d in /opt/homebrew/bin /usr/local/bin; do [[ -z "$NODE" && -x "$d/node" ]] && NODE="$d/node"; done
+NODEDIR="$(dirname "${NODE:-/opt/homebrew/bin/node}")"
+if [[ -z "$NODE" ]]; then echo "Browser capture: Node not found (brew install node, then re-run)."
+elif [[ ! -d "$DEST/node_modules/playwright-core" ]]; then echo "Browser capture: run once:  cd \"$DEST\" && npm install   then re-run."
+else echo "Browser capture: ready (node $("$NODE" -v))."; fi
+[[ -d "/Applications/Google Chrome.app" ]] || echo "Browser capture: Google Chrome not found in /Applications."
 
 # 3. secrets -> Keychain (asked only if missing)
 if security find-generic-password -s macrenderhelper-github -w >/dev/null 2>&1; then
@@ -64,7 +73,8 @@ cat > "$PLIST" <<PL
   <key>Label</key><string>$LABEL</string>
   <key>ProgramArguments</key><array>
     <string>$PY</string><string>$DEST/rh_worker.py</string>
-    <string>--ffmpeg-dir</string><string>$FFDIR</string></array>
+    <string>--ffmpeg-dir</string><string>$FFDIR</string>
+    <string>--node-dir</string><string>$NODEDIR</string></array>
   <key>WorkingDirectory</key><string>$DEST</string>
   <key>RunAtLoad</key><true/><key>KeepAlive</key><true/>
   <key>ProcessType</key><string>Background</string>

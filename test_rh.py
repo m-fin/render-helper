@@ -216,5 +216,69 @@ class Stats(unittest.TestCase):
         h = dash.render_html(recs, s); self.assertIn("Estimated", h); self.assertIn("&lt;b&gt;", h)
         self.assertIn("ESTIMATED", dash.text_summary(s))
 
+import tarfile, io, hashlib
+def _tar(members):
+    b = io.BytesIO()
+    with tarfile.open(fileobj=b, mode="w") as t:
+        for name, data, kind in members:
+            ti = tarfile.TarInfo(name); ti.size = len(data)
+            if kind == "sym": ti.type = tarfile.SYMTYPE; ti.linkname = "/etc/passwd"; ti.size = 0
+            t.addfile(ti, io.BytesIO(data) if kind != "sym" else None)
+    return b.getvalue()
+
+def cjob(**over):
+    capd = {"bundle": "g.tar", "bundle_sha256": "0" * 64, "seed": 1, "w": 640, "h": 360, "limit": 30, "out": "v.mp4"}
+    capd.update(over)
+    return {"id": "c1", "bot": "t", "created": "x", "cmd": ["capture"], "inputs": ["g.tar"], "outputs": ["v.mp4"], "capture": capd}
+
+class Capture(unittest.TestCase):
+    def test_valid(self): self.assertTrue(c.validate_job(cjob()))
+    def test_rejects(self):
+        for bad in (dict(seed="1"), dict(w=99999), dict(out="v.mov"), dict(bundle="x.tar"), dict(bundle_sha256="zz")):
+            with self.assertRaises(c.ValidationError): c.validate_job(cjob(**bad))
+        j = cjob(); j["capture"]["url"] = "http://x"
+        with self.assertRaises(c.ValidationError): c.validate_job(j)
+        j = cjob(); j["cmd"] = ["capture", "--evil"]
+        with self.assertRaises(c.ValidationError): c.validate_job(j)
+        j = job(); j["capture"] = cjob()["capture"]
+        with self.assertRaises(c.ValidationError): c.validate_job(j)
+    def test_safe_extract(self):
+        d = tempfile.mkdtemp()
+        for m in ([("../x", b"1", "f")], [("/abs", b"1", "f")], [("l", b"", "sym")]):
+            p = os.path.join(d, "t.tar"); open(p, "wb").write(_tar(m))
+            with self.assertRaises(c.ValidationError): c.safe_extract(p, os.path.join(d, "o"))
+        open(p, "wb").write(_tar([("a/b.mjs", b"ok", "f")])); c.safe_extract(p, os.path.join(d, "o"))
+        self.assertEqual(open(os.path.join(d, "o/a/b.mjs")).read(), "ok")
+    def _run(self, data, sha):
+        gh = FakeGH(); j = c.sign_job(cjob(bundle_sha256=sha), KEY)
+        gh.files["jobs/c1/job.json"] = (json.dumps(j).encode(), 1)
+        rel = gh.create_release("job-c1", "job-c1"); gh.upload_asset(rel, "g.tar", data)
+        calls = []
+        def fake(args, **kw):
+            calls.append((args, kw)); open(args[6], "wb").write(b"v"); return mock.Mock(returncode=0, stderr="", stdout="")
+        with mock.patch("subprocess.run", side_effect=fake):
+            w.run_job(gh, "c1", KEY, "/ff", worker="m", log=lambda m: None, node_dir="/nd")
+        return gh, calls
+    def test_fixed_script_and_hash(self):
+        data = _tar([("capture.html", b"x", "f")])
+        gh, calls = self._run(data, hashlib.sha256(data).hexdigest())
+        args, kw = calls[0]
+        self.assertEqual(args[0], "/nd/node"); self.assertEqual(args[1], w.CAPTURE_SCRIPT)
+        self.assertEqual(args[-1], "/ff/ffmpeg"); self.assertNotIn("RH_GITHUB_TOKEN", kw["env"])
+        self.assertIn("jobs/c1/done.json", gh.files)
+    def test_hash_mismatch_refused(self):
+        gh, calls = self._run(_tar([("capture.html", b"x", "f")]), "1" * 64)
+        self.assertEqual(calls, []); self.assertIn("jobs/c1/failed.json", gh.files)
+    def test_exact_encoder_keeps_x264(self):
+        gh = FakeGH(); j = job(); j["exact_encoder"] = True; j = c.sign_job(j, KEY)
+        gh.files["jobs/t1/job.json"] = (json.dumps(j).encode(), 1)
+        rel = gh.create_release("job-t1", "job-t1"); gh.upload_asset(rel, "a.mp4", b"1")
+        seen = []
+        def fake(args, **kw):
+            seen.append(args); open(args[-1], "wb").write(b"x"); return mock.Mock(returncode=0, stderr="", stdout="")
+        with mock.patch("subprocess.run", side_effect=fake):
+            w.run_job(gh, "t1", KEY, "/ff", worker="m", log=lambda m: None)
+        self.assertNotIn("h264_videotoolbox", seen[0])
+
 if __name__ == "__main__":
     unittest.main()

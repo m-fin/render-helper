@@ -12,7 +12,16 @@ from rh_common import GitHub, sign_job, validate_job, check_name, REPO
 MAX_INPUT_BYTES = 1900 * 1024 * 1024
 
 
-def build_job(bot, cmd, inputs, outputs, job_id=None, created=None):
+def build_job(bot, cmd, inputs, outputs, job_id=None, created=None, exact_encoder=False, capture=None):
+    j = _base(bot, cmd, inputs, outputs, job_id, created)
+    if exact_encoder:
+        j["exact_encoder"] = True
+    if capture is not None:
+        j["capture"] = capture
+    return j
+
+
+def _base(bot, cmd, inputs, outputs, job_id, created):
     return {
         "id": job_id or datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).strftime("%Y%m%d%H%M%S") + "-" + uuid.uuid4().hex[:8],
         "bot": bot,
@@ -65,13 +74,25 @@ def main(argv=None):
     ap.add_argument("-o", "--output", action="append", default=[])
     ap.add_argument("--outdir", default=".")
     ap.add_argument("--repo", default=REPO)
+    ap.add_argument("--exact-encoder", action="store_true", help="keep libx264 (no VideoToolbox swap)")
+    ap.add_argument("--capture", help="browser capture: game .tar bundle (runs the repo's fixed rh_capture.mjs)")
+    ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--size", default="1920x1080")
+    ap.add_argument("--limit", type=int, default=0, help="frames (0 = whole run)")
     ap.add_argument("cmd", nargs=argparse.REMAINDER)
     a = ap.parse_args(argv)
     cmd = a.cmd[1:] if a.cmd and a.cmd[0] == "--" else a.cmd
     token, key = os.environ.get("RH_GITHUB_TOKEN"), os.environ.get("RH_HMAC_KEY")
     if not token or not key:
         raise SystemExit("set RH_GITHUB_TOKEN and RH_HMAC_KEY")
-    job = build_job(a.bot, cmd, a.input, a.output)
+    cap = None
+    if a.capture:
+        import hashlib
+        w, h = (int(x) for x in a.size.split("x"))
+        cap = {"bundle": os.path.basename(a.capture), "seed": a.seed, "w": w, "h": h, "limit": a.limit,
+               "out": a.output[0], "bundle_sha256": hashlib.sha256(open(a.capture, "rb").read()).hexdigest()}
+        cmd, a.input = ["capture"], [a.capture] + a.input
+    job = build_job(a.bot, cmd, a.input, a.output, exact_encoder=a.exact_encoder, capture=cap)
     return submit(GitHub(token, a.repo), job, key.encode(), a.input, a.outdir)
 
 

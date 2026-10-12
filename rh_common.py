@@ -59,12 +59,18 @@ def validate_job(job):
     for k in ("id", "bot", "created", "cmd", "inputs", "outputs"):
         if k not in job:
             raise ValidationError(f"missing {k}")
+    if "exact_encoder" in job and type(job["exact_encoder"]) is not bool:
+        raise ValidationError("exact_encoder must be true/false")
     check_name(job["id"])
     inputs = [check_name(n) for n in job["inputs"]]
     outputs = [check_name(n) for n in job["outputs"]]
     if set(inputs) & set(outputs):
         raise ValidationError("name used as both input and output")
     cmd = job["cmd"]
+    if cmd == ["capture"]:
+        return validate_capture(job, inputs, outputs)
+    if "capture" in job:
+        raise ValidationError("capture block only allowed with cmd ['capture']")
     if not isinstance(cmd, list) or not cmd or not all(isinstance(a, str) for a in cmd):
         raise ValidationError("cmd must be a non-empty list of strings")
     if cmd[0] not in ALLOWED_BINARIES:
@@ -74,6 +80,46 @@ def validate_job(job):
     for a in cmd[1:]:
         validate_arg(a, inputs, outputs)
     return True
+
+
+CAPTURE_KEYS = {"bundle", "bundle_sha256", "seed", "w", "h", "limit", "out"}
+HEX64 = re.compile(r"^[0-9a-f]{64}$")
+
+
+def validate_capture(job, inputs, outputs):
+    """Browser capture: runs ONLY the repo's fixed rh_capture.mjs. The job supplies numbers, one
+    signed game bundle (tar, sha256 pinned in the signed job) and one output name. No URLs, no code args."""
+    c = job.get("capture")
+    if not isinstance(c, dict) or set(c) != CAPTURE_KEYS:
+        raise ValidationError("capture needs exactly: " + ",".join(sorted(CAPTURE_KEYS)))
+    if c["bundle"] not in inputs or not c["bundle"].endswith(".tar"):
+        raise ValidationError("capture bundle must be a listed .tar input")
+    if not isinstance(c["bundle_sha256"], str) or not HEX64.match(c["bundle_sha256"]):
+        raise ValidationError("bad bundle_sha256")
+    if c["out"] not in outputs or not c["out"].endswith(".mp4") or len(outputs) != 1:
+        raise ValidationError("capture out must be the single .mp4 output")
+    for k, lo, hi in (("seed", 0, 2**31), ("w", 16, 3840), ("h", 16, 3840), ("limit", 0, 30 * 600)):
+        if type(c[k]) is not int or not lo <= c[k] <= hi:
+            raise ValidationError(f"capture {k} out of range")
+    return True
+
+
+def safe_extract(tar_path, dest):
+    """Extract regular files/dirs only; no links, devices, absolute paths or '..'."""
+    import os, tarfile
+    with tarfile.open(tar_path) as t:
+        for m in t.getmembers():
+            n = m.name
+            if n.startswith("/") or ".." in n.split("/") or not (m.isfile() or m.isdir()):
+                raise ValidationError(f"unsafe tar member: {n!r}")
+        for m in t.getmembers():
+            target = os.path.join(dest, m.name)
+            if m.isdir():
+                os.makedirs(target, exist_ok=True)
+            else:
+                os.makedirs(os.path.dirname(target), exist_ok=True)
+                with t.extractfile(m) as src, open(target, "wb") as dst:
+                    dst.write(src.read())
 
 
 def validate_arg(a, inputs, outputs):

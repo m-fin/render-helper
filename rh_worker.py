@@ -121,7 +121,29 @@ def pending_jobs(gh):
             yield d["name"]
 
 
-def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker=""):
+CAPTURE_SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rh_capture.mjs")
+
+
+def capture_args(job, ind, outd, ffmpeg_dir, node_dir):
+    """Fixed command: node <installed rh_capture.mjs> on the hash-checked, safely extracted bundle."""
+    import hashlib
+    from rh_common import safe_extract
+    c = job["capture"]
+    tar = os.path.join(ind, c["bundle"])
+    with open(tar, "rb") as f:
+        if hashlib.sha256(f.read()).hexdigest() != c["bundle_sha256"]:
+            raise ValidationError("bundle sha256 mismatch")
+    game = os.path.join(ind, "game")
+    os.makedirs(game)
+    safe_extract(tar, game)
+    node = os.path.join(node_dir, "node")
+    args = [node, CAPTURE_SCRIPT, game, str(c["seed"]), str(c["w"]), str(c["h"]),
+            os.path.join(outd, c["out"]), str(c["limit"]), os.path.join(ffmpeg_dir, "ffmpeg")]
+    env = {"PATH": f"{node_dir}:{ffmpeg_dir}:/usr/bin:/bin", "HOME": os.path.expanduser("~")}
+    return args, env
+
+
+def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir="/opt/homebrew/bin"):
     job, _ = gh.get_file(f"jobs/{job_id}/job.json")
     tag = f"job-{job_id}"
     stats = {}
@@ -155,14 +177,22 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker=""):
                 return finish("failed.json", -1, "inputs over size cap")
             with open(os.path.join(ind, n), "wb") as f:
                 f.write(gh.download_asset(assets[n]))
-        binpath = os.path.join(ffmpeg_dir, job["cmd"][0])
-        args = prefer_videotoolbox(rewrite_args(job["cmd"], ind, outd, binpath), vt)
-        if job["cmd"][0] == "ffmpeg":
-            args.insert(1, "-nostdin")
+        env = None
+        if job["cmd"] == ["capture"]:
+            try:
+                args, env = capture_args(job, ind, outd, ffmpeg_dir, node_dir)
+            except (ValidationError, OSError) as e:
+                return finish("failed.json", -1, f"capture rejected: {e}")
+        else:
+            binpath = os.path.join(ffmpeg_dir, job["cmd"][0])
+            args = prefer_videotoolbox(rewrite_args(job["cmd"], ind, outd, binpath),
+                                       vt and not job.get("exact_encoder", False))
+            if job["cmd"][0] == "ffmpeg":
+                args.insert(1, "-nostdin")
         log(f"running {job_id}: {args}")
         ru0, t0 = resource.getrusage(resource.RUSAGE_CHILDREN), time.monotonic()
         try:
-            p = subprocess.run(args, cwd=work, capture_output=True, text=True, timeout=TIMEOUT, shell=False)
+            p = subprocess.run(args, cwd=work, capture_output=True, text=True, timeout=TIMEOUT, shell=False, env=env)
             code, tail = p.returncode, (p.stderr or "") + (p.stdout or "")
         except subprocess.TimeoutExpired:
             code, tail = -9, "timed out"
@@ -224,6 +254,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=REPO)
     ap.add_argument("--ffmpeg-dir", default="/opt/homebrew/bin")
+    ap.add_argument("--node-dir", default="/opt/homebrew/bin")
     ap.add_argument("--no-videotoolbox", action="store_true")
     ap.add_argument("--once", action="store_true", help="check once and exit (test)")
     ap.add_argument("--selftest", action="store_true", help="tiny local test render, prints PASS/FAIL")
@@ -262,7 +293,8 @@ def main(argv=None):
                     state.update(state="busy", job=jid)
                     try:
                         run_job(gh, jid, key, a.ffmpeg_dir, not a.no_videotoolbox,
-                                log=lambda m: print(m, flush=True), worker=worker)
+                                log=lambda m: print(m, flush=True), worker=worker,
+                                node_dir=a.node_dir)
                     finally:
                         state.update(state="idle", job=None)
         except Exception as e:  # keep the agent alive through network blips
