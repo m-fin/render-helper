@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "50:18.18    \nframe=107614 fps= 36 q=18.0 size= 1394176KiB time=00:59:47.34 bitrate=3183.7kbits/s speed=1.19x elapsed=0:50:18.86    \nframe=107634 fps= 36 q=18.0 size= 1394432KiB time=00:59:47.94 bitrate=3183.8kbits/s speed=1.19x elapsed=0:50:19.55    \nframe=107651 fps= 36 q=18.0 size= 1394688KiB time=00:59:48.34 bitrate=3184.0kbits/s speed=1.19x elapsed=0:50:20.23    \nframe=107670 fps= 36 q=17.0 size= 1394944KiB time=00:59:49.03 bitrate=3184.0kbits/s speed=1.19x elapsed=0:50:20.93    \nframe=107686 fps= 36 q=17.0 size= 1395200KiB time=00:59:49.54 bitrate=3184.1kbits/s speed=1.19x elapsed=0:50:21.58    \nframe=107705 fps= 36 q=19.0 size= 1395456KiB time=00:59:50.13 bitrate=3184.2kbits/s speed=1.19x elapsed=0:50:22.28    \nframe=107723 fps= 36 q=18.0 size= 1395712KiB time=00:59:50.94 bitrate=3184.0kbits/s speed=1.19x elapsed=0:50:22.96    \nframe=107743 fps= 36 q=18.0 size= 1395968KiB time=00:59:51.63 bitrate=3184.0kbits/s speed=1.19x elapsed=0:50:23.65    \nframe=107762 fps= 36 q=17.0 size= 1396224KiB time=00:59:52.15 bitrate=3184.1kbits/s speed=1.19x elapsed=0:50:24.28    \nframe=107781 fps= 36 q=17.0 size= 1396480KiB time=00:59:52.84 bitrate=3184.1kbits/s speed=1.19x elapsed=0:50:24.98    \nframe=107801 fps= 36 q=17.0 size= 1396736KiB time=00:59:53.54 bitrate=3184.1kbits/s speed=1.19x elapsed=0:50:25.66    \nframe=107820 fps= 36 q=17.0 size= 1396992KiB time=00:59:54.14 bitrate=3184.1kbits/s speed=1.19x elapsed=0:50:26.35    \nframe=107841 fps= 36 q=17.0 size= 1397248KiB time=00:59:54.75 bitrate=3184.2kbits/s speed=1.19x elapsed=0:50:27.04    \nframe=107858 fps= 36 q=17.0 size= 1397504KiB time=00:59:55.23 bitrate=3184.3kbits/s speed=1.19x elapsed=0:50:27.72    \nframe=107877 fps= 36 q=17.0 size= 1397504KiB time=00:59:55.93 bitrate=3183.7kbits/s speed=1.19x elapsed=0:50:28.42    \nframe=107896 fps= 36 q=17.0 size= 1397760KiB time=00:59:56.79 bitrate=3183.5kbits/s speed=1.19x elapsed=0:50:29.11    \nframe=107911 fps= 36 q=17.0 size= 1398016KiB time=00:59:57.04 bitrate=3183.9kbits/s speed=1.19x elapsed=0:50:29.81    \nframe=107930 fps= 36 q=17.0 size= 1398272KiB time=00:59:59.95 bitrate=3181.9kbits/s speed=1.19x elapsed=0:50:30.50    \nframe=107959 fps= 36 q=16.0 size= 1398528KiB time=N/A bitrate=N/A speed=N/A elapsed=0:50:31.18    \nframe=107993 fps= 36 q=-1.0 size= 1398784KiB time=N/A bitrate=N/A speed=N/A elapsed=0:50:31.87    \n[mp4 @ 0xc11010780] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0xc10c0cc00] video:1312499KiB audio:86488KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.270466%\nframe=108000 fps= 36 q=-1.0 Lsize= 1402771KiB time=01:00:00.00 bitrate=3192.1kbits/s speed=1.19x elapsed=0:50:33.74    \n[libx264 @ 0xc1103d180] frame I:433   Avg QP: 3.19  size:197913\n[libx264 @ 0xc1103d180] frame P:36544 Avg QP: 4.38  size: 23435\n[libx264 @ 0xc1103d180] frame B:71023 Avg QP: 7.89  size:  5659\n[libx264 @ 0xc1103d180] consecutive B-frames:  7.8% 11.4%  6.4% 74.4%\n[libx264 @ 0xc1103d180] mb I  I16..4: 53.4% 23.8% 22.8%\n[libx264 @ 0xc1103d180] mb P  I16..4: 13.2%  3.6%  0.7%  P16..4: 18.2%  3.5%  4.4%  0.0%  0.0%    skip:56.4%\n[libx264 @ 0xc1103d180] mb B  I16..4:  1.1%  0.2%  0.1%  B16..8: 16.3%  1.2%  0.3%  direct: 5.4%  skip:75.4%  L0:47.7% L1:48.5% BI: 3.8%\n[libx264 @ 0xc1103d180] 8x8 transform intra:20.6% inter:44.3%\n[libx264 @ 0xc1103d180] coded y,uvDC,uvAC intra: 10.6% 15.7% 13.9% inter: 3.5% 10.4% 4.2%\n[libx264 @ 0xc1103d180] i16 v,h,dc,p: 66% 33%  1%  1%\n[libx264 @ 0xc1103d180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  5% 24% 61%  1%  2%  1%  3%  1%  2%\n[libx264 @ 0xc1103d180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 35% 33%  3%  4%  2%  4%  1%  3%\n[libx264 @ 0xc1103d180] i8c dc,h,v,p: 65% 30%  3%  2%\n[libx264 @ 0xc1103d180] Weighted P-Frames: Y:0.2% UV:0.1%\n[libx264 @ 0xc1103d180] ref P L0: 70.4%  1.8% 21.2%  6.6%  0.0%\n[libx264 @ 0xc1103d180] ref B L0: 78.4% 17.0%  4.6%\n[libx264 @ 0xc1103d180] ref B L1: 93.9%  6.1%\n[libx264 @ 0xc1103d180] kb/s:2986.66\n[aac @ 0xc11138380] Qavg: 548.597\n",
+ "at": "2026-10-12T12:31:15Z",
+ "stats": {
+  "job_id": "20261012112945-089aeb6e",
+  "bot": "content-writer",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T12:31:15Z",
+  "exit_code": 0,
+  "wall_s": 3033.954,
+  "cpu_s": 16723.374,
+  "input_bytes": 484197018,
+  "output_bytes": 1436437742,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 278.723,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
