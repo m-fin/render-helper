@@ -1,0 +1,22 @@
+{
+ "exit_code": 234,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\nInput #0, png_pipe, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012104309-407040b2-gi391up7/in/2026-10-12-cabinfilter-1_sprite.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 16200x2400, 30 fps, 30 tbr, 30 tbn\n[fc#0 @ 0x9cf010000] Invalid file index 1 in filtergraph description [1:v]format=rgba,crop=1080:300:'mod(gte(t,0.20)+gte(t,0.49)+gte(t,1.08)+gte(t,1.38)+gte(t,1.61)+gte(t,1.90)+gte(t,2.20)+gte(t,2.37)+gte(t,2.61)+gte(t,2.96)+gte(t,3.37)+gte(t,4.14)+gte(t,4.43)+gte(t,4.78)+gte(t,5.08)+gte(t,5.31)+gte(t,5.61)+gte(t,5.84)+gte(t,6.19)+gte(t,6.61)+gte(t,7.13)+gte(t,7.66)+gte(t,8.02)+gte(t,8.25)+gte(t,8.49)+gte(t,8.72)+gte(t,9.37)+gte(t,9.66)+gte(t,9.90)+gte(t,11.21)+gte(t,11.49)+gte(t,11.76)+gte(t,11.98)+gte(t,12.20)+gte(t,12.37)+gte(t,12.59)+gte(t,12.75)+gte(t,12.97)+gte(t,13.30)+gte(t,13.86)+gte(t,14.13)+gte(t,14.30)+gte(t,14.63)+gte(t,14.85)+gte(t,15.12)+gte(t,15.29)+gte(t,17.13)+gte(t,17.43)+gte(t,18.03)+gte(t,18.33)+gte(t,18.51)+gte(t,18.75)+gte(t,18.99)+gte(t,19.17)+gte(t,19.41)+gte(t,20.06)+gte(t,20.36)+gte(t,20.78)+gte(t,21.02)+gte(t,21.44)+gte(t,21.92)+gte(t,22.09)+gte(t,22.57)+gte(t,22.81)+gte(t,23.23)+gte(t,23.53)+gte(t,23.89)+gte(t,24.31)+gte(t,24.54)+gte(t,24.84)+gte(t,25.02)+gte(t,25.26)+gte(t,25.68)+gte(t,25.86)+gte(t,26.16)+gte(t,27.48)+gte(t,27.72)+gte(t,27.96)+gte(t,28.32)+gte(t,28.73)+gte(t,28.91)+gte(t,29.27)+gte(t,29.51)+gte(t,29.86)+gte(t,30.04)+gte(t,30.34)+gte(t,30.99)+gte(t,31.29)+gte(t,31.65)+gte(t,31.89)+gte(t,32.24)+gte(t,32.66)+gte(t,32.84)+gte(t,33.19)+gte(t,33.67)+gte(t,33.97)+gte(t,34.21)+gte(t,34.50)+gte(t,34.80)+gte(t,35.16)+gte(t,35.34)+gte(t,35.57)+gte(t,35.93)+gte(t,36.17)+gte(t,36.35)+gte(t,36.88),15)*1080':'(gte(t,5.08)+gte(t,11.21)+gte(t,15.12)+gte(t,21.44)+gte(t,26.16)+gte(t,31.89)+gte(t,36.35))*300',trim=start=5[o].\nError binding filtergraph inputs/outputs: Invalid argument\n",
+ "at": "2026-10-12T10:44:02Z",
+ "stats": {
+  "job_id": "20261012104309-407040b2",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:44:02Z",
+  "exit_code": 234,
+  "wall_s": 0.376,
+  "cpu_s": 0.203,
+  "input_bytes": 592434,
+  "output_bytes": 0,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.003,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
