@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "mebrew/Cellar/ffmpeg/8.1.2 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      60. 26.102 / 60. 26.102\n  libavcodec     62. 28.102 / 62. 28.102\n  libavformat    62. 12.102 / 62. 12.102\n  libavdevice    62.  3.102 / 62.  3.102\n  libavfilter    11. 14.102 / 11. 14.102\n  libswscale      9.  5.102 /  9.  5.102\n  libswresample   6.  3.102 /  6.  3.102\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012102408-3fbd4b34-yx54bom2/in/ns217.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf61.7.103\n  Duration: 00:00:49.40, start: 0.000000, bitrate: 338 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 327 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc61.19.101 libx264\n  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 2 kb/s (default)\n    Metadata:\n      handler_name    : SoundHandler\nStream mapping:\n  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_videotoolbox))\n  Stream #0:1 -> #0:1 (copy)\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012102408-3fbd4b34-yx54bom2/out/ns217_vt.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf62.12.102\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, q=2-31, 6000 kb/s, 30 fps, 15360 tbn (default)\n    Metadata:\n      encoder         : Lavc62.28.102 h264_videotoolbox\n      handler_name    : VideoHandler\n  Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 2 kb/s (default)\n    Metadata:\n      handler_name    : SoundHandler\n[h264_videotoolbox @ 0xaad03d180] Color range not set for yuv420p. Using MPEG range.\nframe=    4 fps=0.0 q=-0.0 size=       0KiB time=00:00:00.10 bitrate=   3.8kbits/s speed=0.187x elapsed=0:00:00.53    \nframe=  142 fps=126 q=-0.0 size=    1792KiB time=00:00:04.70 bitrate=3123.5kbits/s speed=4.16x elapsed=0:00:01.13    \nframe=  278 fps=161 q=-0.0 size=    4352KiB time=00:00:09.23 bitrate=3861.2kbits/s speed=5.36x elapsed=0:00:01.72    \nframe=  408 fps=178 q=-0.0 size=    6400KiB time=00:00:13.56 bitrate=3864.6kbits/s speed=5.93x elapsed=0:00:02.28    \nframe=  546 fps=189 q=-0.0 size=    8960KiB time=00:00:18.16 bitrate=4040.4kbits/s speed= 6.3x elapsed=0:00:02.88    \nframe=  674 fps=194 q=-0.0 size=   11008KiB time=00:00:22.43 bitrate=4019.8kbits/s speed=6.46x elapsed=0:00:03.47    \nframe=  812 fps=199 q=-0.0 size=   13312KiB time=00:00:27.03 bitrate=4034.0kbits/s speed=6.64x elapsed=0:00:04.07    \nframe=  928 fps=203 q=-0.0 size=   15616KiB time=00:00:30.90 bitrate=4140.0kbits/s speed=6.75x elapsed=0:00:04.57    \nframe= 1063 fps=206 q=-0.0 size=   17920KiB time=00:00:35.40 bitrate=4146.9kbits/s speed=6.85x elapsed=0:00:05.16    \nframe= 1196 fps=208 q=-0.0 size=   20224KiB time=00:00:39.83 bitrate=4159.2kbits/s speed=6.93x elapsed=0:00:05.74    \nframe= 1332 fps=210 q=-0.0 size=   22528KiB time=00:00:44.36 bitrate=4159.6kbits/s speed=   7x elapsed=0:00:06.33    \nframe= 1462 fps=212 q=-0.0 size=   24320KiB time=00:00:48.70 bitrate=4091.0kbits/s speed=7.06x elapsed=0:00:06.90    \n[mp4 @ 0xaad02f700] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0xaad040300] video:24822KiB audio:14KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.174825%\nframe= 1482 fps=211 q=-0.0 Lsize=   24879KiB time=00:00:49.36 bitrate=4128.5kbits/s speed=7.04x elapsed=0:00:07.00    \n",
+ "at": "2026-10-12T10:24:36Z",
+ "stats": {
+  "job_id": "20261012102408-3fbd4b34",
+  "bot": "speedtest",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:24:36Z",
+  "exit_code": 0,
+  "wall_s": 7.213,
+  "cpu_s": 11.495,
+  "input_bytes": 2090659,
+  "output_bytes": 25476203,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.192,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
