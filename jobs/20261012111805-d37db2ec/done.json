@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "0c480] Guessed Channel Layout: mono\nInput #1, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/vo_timeline_38s.wav':\n  Duration: 00:00:38.00, bitrate: 384 kb/s\n  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#2:0/pcm_s16le @ 0x9e700c600] Guessed Channel Layout: mono\nInput #2, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/cabin_loop.wav':\n  Duration: 00:02:24.00, bitrate: 705 kb/s\n  Stream #2:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#3:0/pcm_s16le @ 0x9e700c780] Guessed Channel Layout: mono\nInput #3, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/zero_g_layer.wav':\n  Duration: 00:02:24.00, bitrate: 705 kb/s\n  Stream #3:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#4:0/pcm_s16le @ 0x9e700c900] Guessed Channel Layout: mono\nInput #4, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/wake.wav':\n  Duration: 00:00:02.50, bitrate: 705 kb/s\n  Stream #4:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#5:0/pcm_s16le @ 0x9e700ca80] Guessed Channel Layout: mono\nInput #5, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/float_start.wav':\n  Duration: 00:00:02.00, bitrate: 705 kb/s\n  Stream #5:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#6:0/pcm_s16le @ 0x9e700cc00] Guessed Channel Layout: mono\nInput #6, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/cockpit_reach.wav':\n  Duration: 00:00:01.20, bitrate: 705 kb/s\n  Stream #6:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#7:0/pcm_s16le @ 0x9e700cd80] Guessed Channel Layout: mono\nInput #7, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/in/window_look.wav':\n  Duration: 00:00:10.40, bitrate: 705 kb/s\n  Stream #7:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\nStream mapping:\n  Stream #1:0 (pcm_s16le) -> aresample:default\n  Stream #2:0 (pcm_s16le) -> atrim:default\n  Stream #3:0 (pcm_s16le) -> atrim:default\n  Stream #4:0 (pcm_s16le) -> adelay:default\n  Stream #5:0 (pcm_s16le) -> adelay:default\n  Stream #6:0 (pcm_s16le) -> adelay:default\n  Stream #7:0 (pcm_s16le) -> adelay:default\n  Stream #0:0 -> #0:0 (copy)\n  aresample:default -> Stream #0:1 (aac)\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012111805-d37db2ec-35bikc2p/out/first_light_1920x1080.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, smpte170m/unknown/unknown, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 10130 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n    Side data:\n      ICC Profile: (456 bytes)\n  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, mono, fltp, 192 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 aac\nframe=  531 fps=0.0 q=-1.0 size=   22784KiB time=00:00:17.70 bitrate=10545.0kbits/s speed=25.4x elapsed=0:00:00.69    \nframe= 1016 fps=744 q=-1.0 size=   44288KiB time=00:00:33.86 bitrate=10712.8kbits/s speed=24.8x elapsed=0:00:01.36    \n[mp4 @ 0x9e7039680] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0x9e6c2ccc0] video:46992KiB audio:821KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.071552%\nframe= 1140 fps=715 q=-1.0 Lsize=   47847KiB time=00:00:38.00 bitrate=10314.9kbits/s speed=23.8x elapsed=0:00:01.59    \n[aac @ 0x9e73dc000] Qavg: 43404.809\n",
+ "at": "2026-10-12T11:20:55Z",
+ "stats": {
+  "job_id": "20261012111805-d37db2ec",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T11:20:55Z",
+  "exit_code": 0,
+  "wall_s": 1.817,
+  "cpu_s": 2.432,
+  "input_bytes": 76772341,
+  "output_bytes": 48995561,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.041,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
