@@ -1,4 +1,4 @@
-# render-helper (private)
+# HomeRender (private)
 
 A worker you install on your Mac with one click, that lets your Grok Bot render files locally, saving valuable cloud compute.
 
@@ -25,26 +25,26 @@ swapped for `h264_videotoolbox`/`hevc_videotoolbox` (disable with `--no-videotoo
 ## Install on the Mac (one step)
 1. **Token.** github.com → Settings → Developer settings → Personal access tokens →
    Fine-grained tokens → Generate new token. Resource owner `m-fin`; Repository access
-   **Only select repositories → m-fin/render-helper**; Repository permissions
+   **Only select repositories → m-fin/homerender**; Repository permissions
    **Contents: Read and write** only (covers releases, release assets and tags; Metadata
    read-only is added automatically). 90-day expiry is fine.
-2. **Get the files:** repo page → Code → Download ZIP (or `git clone https://github.com/m-fin/render-helper.git`).
+2. **Get the files:** repo page → Code → Download ZIP (or `git clone https://github.com/m-fin/homerender.git`).
 3. **Run the installer in Terminal** from that folder:
    ```
    bash install.command
    ```
-   It copies the worker to `~/Library/Application Support/render-helper`, checks for Homebrew
+   It copies the worker to `~/Library/Application Support/homerender`, checks for Homebrew
    ffmpeg, asks once for the token and the HMAC key (press Enter to generate a key; it is
    printed once, so give it to Grok Bot in your private 1:1 chat as `RH_HMAC_KEY`), saves both
    to the macOS Keychain, installs and loads the launchd agent, then runs a 1-second 64×64
    test render and prints **PASS** or **FAIL**. Safe to re-run (keeps existing Keychain items).
    If macOS asks to let python3 use the Keychain items, click **Always Allow**.
-4. Uninstall: `bash install.command --uninstall`. Log: `~/Library/Logs/render-helper.log`.
+4. Uninstall: `bash install.command --uninstall`. Log: `~/Library/Logs/homerender.log`.
 
 Running it with `bash` avoids Gatekeeper quarantine. On macOS 15+ a double-clicked unsigned
 `install.command` is blocked: allow it in System Settings → Privacy & Security → Open Anyway,
 or run `xattr -d com.apple.quarantine install.command`. No `curl | bash` install while the
-repo is private. (`com.mfin.render-helper.plist` is a reference template; the installer writes
+repo is private. (`com.mfin.homerender.plist` is a reference template; the installer writes
 its own.)
 
 ## Bot side (shared Linux computer)

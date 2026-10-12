@@ -1,7 +1,7 @@
-"""Shared helpers for render-helper (Python 3 stdlib only)."""
+"""Shared helpers for HomeRender (Python 3 stdlib only)."""
 import base64, hashlib, hmac, json, re, urllib.error, urllib.parse, urllib.request
 
-REPO = "m-fin/render-helper"
+REPO = "m-fin/homerender"
 API = "https://api.github.com"
 UPLOADS = "https://uploads.github.com"
 ALLOWED_BINARIES = ("ffmpeg", "ffprobe")
@@ -121,7 +121,7 @@ class GitHub:
         r.add_header("Authorization", f"Bearer {self.token}")
         r.add_header("Accept", accept)
         r.add_header("X-GitHub-Api-Version", "2022-11-28")
-        r.add_header("User-Agent", "render-helper")
+        r.add_header("User-Agent", "homerender")
         if data is not None:
             r.add_header("Content-Type", ctype)
         try:
@@ -169,7 +169,7 @@ class GitHub:
 
     def create_release(self, tag, name):
         return self.req("POST", "/releases", {"tag_name": tag, "name": name, "prerelease": True,
-                                               "body": "render-helper job (auto-deleted)"})
+                                               "body": "HomeRender job (auto-deleted)"})
 
     def upload_asset(self, release, name, data):
         url = f"{UPLOADS}/repos/{self.repo}/releases/{release['id']}/assets?name={urllib.parse.quote(name)}"

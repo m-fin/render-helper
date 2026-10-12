@@ -1,10 +1,10 @@
 #!/bin/bash
-# render-helper one-step installer for macOS.  Usage: bash install.command [--uninstall]
+# HomeRender one-step installer for macOS.  Usage: bash install.command [--uninstall]
 set -euo pipefail
-LABEL=com.mfin.render-helper
-DEST="$HOME/Library/Application Support/render-helper"
+LABEL=com.mfin.homerender
+DEST="$HOME/Library/Application Support/homerender"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
-LOG="$HOME/Library/Logs/render-helper.log"
+LOG="$HOME/Library/Logs/homerender.log"
 SRC="$(cd "$(dirname "$0")" && pwd)"
 
 if [[ "${1:-}" == "--uninstall" ]]; then
@@ -12,13 +12,13 @@ if [[ "${1:-}" == "--uninstall" ]]; then
   rm -f "$PLIST"; rm -rf "$DEST"
   read -r -p "Also delete the token and key from Keychain? [y/N] " a
   if [[ "$a" =~ ^[Yy]$ ]]; then
-    security delete-generic-password -s render-helper-github >/dev/null 2>&1 || true
-    security delete-generic-password -s render-helper-hmac  >/dev/null 2>&1 || true
+    security delete-generic-password -s homerender-github >/dev/null 2>&1 || true
+    security delete-generic-password -s homerender-hmac  >/dev/null 2>&1 || true
   fi
-  echo "render-helper uninstalled."; exit 0
+  echo "HomeRender uninstalled."; exit 0
 fi
 
-echo "== render-helper installer =="
+echo "== HomeRender installer =="
 # 1. ffmpeg
 FF="$(command -v ffmpeg || true)"
 for d in /opt/homebrew/bin /usr/local/bin; do [[ -z "$FF" && -x "$d/ffmpeg" ]] && FF="$d/ffmpeg"; done
@@ -32,14 +32,14 @@ mkdir -p "$DEST" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
 cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$DEST/"
 
 # 3. secrets -> Keychain (asked only if missing)
-if security find-generic-password -s render-helper-github -w >/dev/null 2>&1; then
+if security find-generic-password -s homerender-github -w >/dev/null 2>&1; then
   echo "GitHub token: already in Keychain (keeping it)."
 else
-  read -r -s -p "Paste the fine-grained GitHub token for m-fin/render-helper: " TOK; echo
+  read -r -s -p "Paste the fine-grained GitHub token for m-fin/homerender: " TOK; echo
   [[ -n "$TOK" ]] || { echo "No token entered."; exit 1; }
-  security add-generic-password -U -a "$USER" -s render-helper-github -w "$TOK"; unset TOK
+  security add-generic-password -U -a "$USER" -s homerender-github -w "$TOK"; unset TOK
 fi
-if security find-generic-password -s render-helper-hmac -w >/dev/null 2>&1; then
+if security find-generic-password -s homerender-hmac -w >/dev/null 2>&1; then
   echo "HMAC key: already in Keychain (keeping it)."
 else
   read -r -s -p "Paste the shared HMAC key, or press Enter to generate one: " KEY; echo
@@ -48,7 +48,7 @@ else
     echo "Generated HMAC key (give it to Grok Bot in your private 1:1 chat as RH_HMAC_KEY; never in a group chat):"
     echo "  $KEY"
   fi
-  security add-generic-password -U -a "$USER" -s render-helper-hmac -w "$KEY"; unset KEY
+  security add-generic-password -U -a "$USER" -s homerender-hmac -w "$KEY"; unset KEY
 fi
 
 # 4. launchd agent (reload if already present)
@@ -73,7 +73,7 @@ echo "Background worker loaded ($LABEL). Log: $LOG"
 # 5. tiny local test render (1s, 64x64)
 echo "Running test job..."
 if "$PY" "$DEST/rh_worker.py" --ffmpeg-dir "$FFDIR" --selftest; then
-  echo "render-helper installed. PASS"
+  echo "HomeRender installed. PASS"
 else
-  echo "render-helper test FAILED. See output above."; exit 1
+  echo "HomeRender test FAILED. See output above."; exit 1
 fi
