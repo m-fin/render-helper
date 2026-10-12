@@ -1,0 +1,11 @@
+{
+ "type": "hello",
+ "worker_id": "mac-902637526d13",
+ "at": "2026-10-12T10:19:27Z",
+ "model": "Mac16,12",
+ "macos": "26.5.1",
+ "chip": "Apple M4",
+ "arch": "arm64",
+ "ffmpeg": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+ "sig": "52167d28439851e8c76c7dc722e5c430901149bc94e6bce90253d46dee7f6cc7"
+}
