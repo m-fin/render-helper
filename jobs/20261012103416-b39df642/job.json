@@ -1,0 +1,28 @@
+{
+ "id": "20261012103416-b39df642",
+ "bot": "bench",
+ "created": "2026-10-12T10:34:16Z",
+ "cmd": [
+  "capture"
+ ],
+ "inputs": [
+  "game.tar"
+ ],
+ "outputs": [
+  "bench_x264_t2.mp4",
+  "bench_x264_all.mp4",
+  "bench_vt.mp4",
+  "bench_stats.json"
+ ],
+ "capture": {
+  "bundle": "game.tar",
+  "seed": 1,
+  "w": 1920,
+  "h": 1080,
+  "limit": 0,
+  "out": "bench_x264_t2.mp4",
+  "bundle_sha256": "094059d9e206ae990bc01958965ca45497becfd3f22138a04843843322fcfaa3",
+  "bench": 1
+ },
+ "sig": "dcf4b2b5a627528964feb79f3549e0fcee62bb209538ace90e6af56f3f770dad"
+}
