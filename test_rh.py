@@ -233,6 +233,25 @@ def cjob(**over):
 
 class Capture(unittest.TestCase):
     def test_valid(self): self.assertTrue(c.validate_job(cjob()))
+    def test_bench(self):
+        j = cjob(out="bench_x264_t2.mp4", bench=1); j["outputs"] = list(c.BENCH_OUTPUTS)
+        self.assertTrue(c.validate_job(j))
+        j["outputs"] = ["bench_x264_t2.mp4"]
+        with self.assertRaises(c.ValidationError): c.validate_job(j)
+        j = cjob(bench=2); 
+        with self.assertRaises(c.ValidationError): c.validate_job(j)
+    def test_bench_run_mocked(self):
+        d = tempfile.mkdtemp(); ind, outd = os.path.join(d, "i"), os.path.join(d, "o"); os.makedirs(ind); os.makedirs(outd)
+        def fake(args, **kw):
+            if "-show_entries" in args: return mock.Mock(returncode=0, stdout="38.0", stderr="")
+            open(args[6] if args[1].endswith(".mjs") else args[-1], "wb").write(b"z" * 100)
+            return mock.Mock(returncode=0, stderr="", stdout="")
+        with mock.patch("subprocess.run", side_effect=fake):
+            code, _ = w.run_bench(["n", "x.mjs", "g", "1", "1920", "1080", "o.mp4", "0", "ff"], {}, d, ind, outd, "/ff")
+        self.assertEqual(code, 0); self.assertFalse(os.path.exists(os.path.join(ind, "bench.mkv")))
+        r = json.load(open(os.path.join(outd, "bench_stats.json")))["results"]
+        self.assertEqual(r["vt"]["args"][-1], str(int(100 * 8 / 38.0)))
+        self.assertEqual(sorted(os.listdir(outd)), sorted(c.BENCH_OUTPUTS))
     def test_mkv_ok(self):
         j = cjob(out="v.mkv"); j["outputs"] = ["v.mkv"]; self.assertTrue(c.validate_job(j))
     def test_rejects(self):

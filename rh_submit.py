@@ -76,6 +76,7 @@ def main(argv=None):
     ap.add_argument("--repo", default=REPO)
     ap.add_argument("--exact-encoder", action="store_true", help="keep libx264 (no VideoToolbox swap)")
     ap.add_argument("--capture", help="browser capture: game .tar bundle (runs the repo's fixed rh_capture.mjs)")
+    ap.add_argument("--bench", action="store_true", help="capture-bench: lossless capture + 3 encodes on the Mac")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--size", default="1920x1080")
     ap.add_argument("--limit", type=int, default=0, help="frames (0 = whole run)")
@@ -90,7 +91,10 @@ def main(argv=None):
         import hashlib
         w, h = (int(x) for x in a.size.split("x"))
         cap = {"bundle": os.path.basename(a.capture), "seed": a.seed, "w": w, "h": h, "limit": a.limit,
-               "out": a.output[0], "bundle_sha256": hashlib.sha256(open(a.capture, "rb").read()).hexdigest()}
+               "out": (a.output or ["x.mp4"])[0], "bundle_sha256": hashlib.sha256(open(a.capture, "rb").read()).hexdigest()}
+        if a.bench:
+            from rh_common import BENCH_OUTPUTS
+            a.output = list(BENCH_OUTPUTS); cap["out"] = BENCH_OUTPUTS[0]; cap["bench"] = 1
         cmd, a.input = ["capture"], [a.capture] + a.input
     job = build_job(a.bot, cmd, a.input, a.output, exact_encoder=a.exact_encoder, capture=cap)
     return submit(GitHub(token, a.repo), job, key.encode(), a.input, a.outdir)

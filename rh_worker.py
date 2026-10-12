@@ -143,6 +143,53 @@ def capture_args(job, ind, outd, ffmpeg_dir, node_dir):
     return args, env
 
 
+def _timed(args, env, cwd):
+    ru0, t0 = resource.getrusage(resource.RUSAGE_CHILDREN), time.monotonic()
+    try:
+        p = subprocess.run(args, cwd=cwd, capture_output=True, text=True, timeout=TIMEOUT, env=env)
+        code, tail = p.returncode, (p.stderr or "") + (p.stdout or "")
+    except subprocess.TimeoutExpired:
+        code, tail = -9, "timed out"
+    ru1 = resource.getrusage(resource.RUSAGE_CHILDREN)
+    cpu = (ru1.ru_utime - ru0.ru_utime) + (ru1.ru_stime - ru0.ru_stime)
+    return code, tail, round(time.monotonic() - t0, 3), (round(cpu, 3) if cpu > 0 else None)
+
+
+def run_bench(args, env, work, ind, outd, ffmpeg_dir):
+    """capture-bench: capture lossless MKV locally, run 3 fixed encodes, write bench_stats.json, delete MKV."""
+    mkv = os.path.join(ind, "bench.mkv")
+    args = list(args); args[6] = mkv  # capture output -> local lossless intermediate (never uploaded)
+    res, tails = {}, []
+    try:
+        code, tail, wall, cpu = _timed(args, env, work); tails.append(tail)
+        res["capture_ffv1"] = {"exit": code, "wall_s": wall, "cpu_s": cpu,
+                               "bytes": os.path.getsize(mkv) if os.path.isfile(mkv) else 0}
+        if code != 0:
+            return code, "\n".join(tails)
+        ff = [os.path.join(ffmpeg_dir, "ffmpeg"), "-nostdin", "-y", "-loglevel", "error", "-i", mkv]
+        tail_opts = ["-pix_fmt", "yuv420p", "-movflags", "+faststart"]
+        x264 = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20"]
+        plan = [("x264_t2", x264 + ["-threads", "2"]), ("x264_all", x264), ("vt", None)]
+        for name, opts in plan:
+            out = os.path.join(outd, f"bench_{name}.mp4")
+            if opts is None:  # bitrate matched to the first output's size
+                dur = float(_out([os.path.join(ffmpeg_dir, "ffprobe"), "-v", "error", "-show_entries",
+                                  "format=duration", "-of", "csv=p=0", mkv]) or 0) or 1
+                opts = ["-c:v", "h264_videotoolbox", "-b:v",
+                        str(int(res["x264_t2"]["bytes"] * 8 / dur))]
+            code, tail, wall, cpu = _timed(ff + opts + tail_opts + [out], env, work); tails.append(tail)
+            res[name] = {"exit": code, "wall_s": wall, "cpu_s": cpu, "args": opts,
+                         "bytes": os.path.getsize(out) if os.path.isfile(out) else 0}
+            if code != 0:
+                return code, "\n".join(tails)
+        with open(os.path.join(outd, "bench_stats.json"), "w") as f:
+            json.dump({"measured_on": "mac", "results": res}, f, indent=1)
+        return 0, json.dumps(res) + "\n" + "\n".join(tails)
+    finally:
+        if os.path.exists(mkv):
+            os.remove(mkv)
+
+
 def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir="/opt/homebrew/bin"):
     job, _ = gh.get_file(f"jobs/{job_id}/job.json")
     tag = f"job-{job_id}"
@@ -191,10 +238,13 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir
                 args.insert(1, "-nostdin")
         log(f"running {job_id}: {args}")
         ru0, t0 = resource.getrusage(resource.RUSAGE_CHILDREN), time.monotonic()
-        try:
+        if job.get("capture", {}).get("bench") == 1:
+            code, tail = run_bench(args, env, work, ind, outd, ffmpeg_dir)
+        else:
+          try:
             p = subprocess.run(args, cwd=work, capture_output=True, text=True, timeout=TIMEOUT, shell=False, env=env)
             code, tail = p.returncode, (p.stderr or "") + (p.stdout or "")
-        except subprocess.TimeoutExpired:
+          except subprocess.TimeoutExpired:
             code, tail = -9, "timed out"
         wall = time.monotonic() - t0
         ru1 = resource.getrusage(resource.RUSAGE_CHILDREN)

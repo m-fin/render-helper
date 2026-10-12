@@ -83,6 +83,7 @@ def validate_job(job):
 
 
 CAPTURE_KEYS = {"bundle", "bundle_sha256", "seed", "w", "h", "limit", "out"}
+BENCH_OUTPUTS = ["bench_x264_t2.mp4", "bench_x264_all.mp4", "bench_vt.mp4", "bench_stats.json"]
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -90,7 +91,11 @@ def validate_capture(job, inputs, outputs):
     """Browser capture: runs ONLY the repo's fixed rh_capture.mjs. The job supplies numbers, one
     signed game bundle (tar, sha256 pinned in the signed job) and one output name. No URLs, no code args."""
     c = job.get("capture")
-    if not isinstance(c, dict) or set(c) != CAPTURE_KEYS:
+    if isinstance(c, dict) and c.get("bench") == 1 and set(c) == CAPTURE_KEYS | {"bench"}:
+        if outputs != BENCH_OUTPUTS or c["out"] != BENCH_OUTPUTS[0]:
+            raise ValidationError("bench outputs must be exactly " + ",".join(BENCH_OUTPUTS))
+        outputs = [c["out"]]
+    elif not isinstance(c, dict) or set(c) != CAPTURE_KEYS:
         raise ValidationError("capture needs exactly: " + ",".join(sorted(CAPTURE_KEYS)))
     if c["bundle"] not in inputs or not c["bundle"].endswith(".tar"):
         raise ValidationError("capture bundle must be a listed .tar input")
