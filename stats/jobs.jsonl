@@ -1,0 +1,1 @@
+{"bot": "rh-status-test", "cloud_cpu_minutes_saved_estimate": {"basis": "cpu_s", "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)", "is_estimate": true, "value": 0.004}, "cpu_s": 0.228, "exit_code": 0, "finished": "2026-10-12T10:20:03Z", "input_bytes": 0, "job_id": "20261012101947-397d102f", "output_bytes": 7184, "wall_s": 0.536, "worker": "mac-902637526d13"}
