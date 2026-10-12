@@ -1,0 +1,31 @@
+{
+ "id": "20261012112357-eccc1218",
+ "bot": "content-writer",
+ "created": "2026-10-12T11:23:57Z",
+ "cmd": [
+  "ffmpeg",
+  "-y",
+  "-stream_loop",
+  "1",
+  "-i",
+  "{in:loop120v2.mp4}",
+  "-ss",
+  "117",
+  "-t",
+  "6",
+  "-c:v",
+  "libx264",
+  "-crf",
+  "18",
+  "-pix_fmt",
+  "yuv420p",
+  "{out:seam_test_v2.mp4}"
+ ],
+ "inputs": [
+  "loop120v2.mp4"
+ ],
+ "outputs": [
+  "seam_test_v2.mp4"
+ ],
+ "sig": "a6b98c8d86f88d87b3b5421728c7e3499805db4a9be2b51c801b71515becc40b"
+}
