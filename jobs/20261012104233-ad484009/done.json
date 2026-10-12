@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "lerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d24e0000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d24f0000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2500000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2510000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2520000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2530000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2540000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2550000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2560000] No accelerated colorspace conversion found from yuva420p to gbrap.\n[swscaler @ 0x7d24c0000] [swscaler @ 0x7d2570000] No accelerated colorspace conversion found from yuva420p to gbrap.\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012104233-ad484009-5x38j3mm/out/seam_test.mp4':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Stream #0:0: Video: h264 (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, q=2-31, 3000 kb/s, 30 fps, 15360 tbn\n    Metadata:\n      encoder         : Lavc63.1.102 h264_videotoolbox\n  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 aac\n[h264_videotoolbox @ 0x7d3049880] Color range not set for yuv420p. Using MPEG range.\nframe=    0 fps=0.0 q=0.0 size=       0KiB time=00:00:00.38 bitrate=   1.0kbits/s speed=0.164x elapsed=0:00:02.33    \nframe=    3 fps=1.0 q=-0.0 size=       0KiB time=00:00:00.38 bitrate=   1.0kbits/s speed=0.13x elapsed=0:00:02.95    \nframe=    6 fps=1.7 q=-0.0 size=       0KiB time=00:00:00.38 bitrate=   1.0kbits/s speed=0.108x elapsed=0:00:03.54    \nframe=    9 fps=2.2 q=-0.0 size=       0KiB time=00:00:00.38 bitrate=   1.0kbits/s speed=0.0929x elapsed=0:00:04.13    \nframe=   13 fps=2.7 q=-0.0 size=       0KiB time=00:00:00.72 bitrate=   0.5kbits/s speed=0.153x elapsed=0:00:04.73    \nframe=   17 fps=3.2 q=-0.0 size=       0KiB time=00:00:00.72 bitrate=   0.5kbits/s speed=0.136x elapsed=0:00:05.33    \nframe=   21 fps=3.5 q=-0.0 size=       0KiB time=00:00:01.06 bitrate=   0.4kbits/s speed=0.18x elapsed=0:00:05.91    \nframe=   25 fps=3.8 q=-0.0 size=       0KiB time=00:00:01.06 bitrate=   0.4kbits/s speed=0.164x elapsed=0:00:06.50    \nframe=   29 fps=4.1 q=-0.0 size=     256KiB time=00:00:01.06 bitrate=1966.4kbits/s speed=0.151x elapsed=0:00:07.07    \nframe=   33 fps=4.3 q=-0.0 size=     256KiB time=00:00:01.40 bitrate=1489.7kbits/s speed=0.184x elapsed=0:00:07.66    \nframe=   37 fps=4.5 q=-0.0 size=     256KiB time=00:00:01.40 bitrate=1489.7kbits/s speed=0.171x elapsed=0:00:08.24    \nframe=   41 fps=4.6 q=-0.0 size=     256KiB time=00:00:01.83 bitrate=1143.3kbits/s speed=0.208x elapsed=0:00:08.83    \nframe=   46 fps=4.9 q=-0.0 size=     256KiB time=00:00:01.83 bitrate=1143.3kbits/s speed=0.195x elapsed=0:00:09.40    \nframe=   49 fps=4.9 q=-0.0 size=     256KiB time=00:00:01.83 bitrate=1143.3kbits/s speed=0.184x elapsed=0:00:09.95    \nframe=   54 fps=5.1 q=-0.0 size=     512KiB time=00:00:01.76 bitrate=2374.4kbits/s speed=0.168x elapsed=0:00:10.54    \nframe=   58 fps=5.2 q=-0.0 size=     512KiB time=00:00:01.90 bitrate=2207.7kbits/s speed=0.17x elapsed=0:00:11.14    \n[out#0/mp4 @ 0x7d2c0c9c0] video:536KiB audio:47KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.525177%\nframe=   60 fps=5.3 q=-0.0 Lsize=     585KiB time=00:00:02.00 bitrate=2398.0kbits/s speed=0.176x elapsed=0:00:11.35    \n[aac @ 0x7d3049f80] Qavg: 228.079\n",
+ "at": "2026-10-12T10:43:34Z",
+ "stats": {
+  "job_id": "20261012104233-ad484009",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:43:34Z",
+  "exit_code": 0,
+  "wall_s": 13.91,
+  "cpu_s": 29.304,
+  "input_bytes": 27377961,
+  "output_bytes": 599502,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.488,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
