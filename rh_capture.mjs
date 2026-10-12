@@ -31,7 +31,8 @@ const first = await page.evaluate(([s, w, h, e]) => window.cap.init(s, w, h, e),
 const enc = (vt) => ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-c:v', 'mjpeg', '-i', '-',
   ...(vt ? ['-c:v', 'h264_videotoolbox', '-b:v', W * H > 1e6 ? '12M' : '6M'] : ['-c:v', 'libx264', '-crf', '20']),
   '-pix_fmt', 'yuv420p', '-r', '30', '-movflags', '+faststart', out];
-const ff = spawn(ffmpeg, enc(process.platform === 'darwin'), { stdio: ['pipe', 'inherit', 'inherit'] });
+const lossless = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-c:v', 'mjpeg', '-i', '-', '-c:v', 'ffv1', '-level', '3', '-pix_fmt', 'yuv420p', '-r', '30', out];
+const ff = spawn(ffmpeg, out.endsWith('.mkv') ? lossless : enc(process.platform === 'darwin'), { stdio: ['pipe', 'inherit', 'inherit'] });
 const write = (b) => new Promise(r => ff.stdin.write(b) ? r() : ff.stdin.once('drain', r));
 const t0 = Date.now();
 for (let k = 0; k < N; k++) {

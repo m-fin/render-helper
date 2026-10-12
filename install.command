@@ -31,14 +31,19 @@ PY=/usr/bin/python3; [[ -x "$PY" ]] || PY="$(command -v python3)"
 # 2. copy files (idempotent overwrite)
 mkdir -p "$DEST" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
 cp "$SRC/rh_worker.py" "$SRC/rh_common.py" "$SRC/rh_capture.mjs" "$SRC/package.json" "$DEST/"
-# browser capture (optional): needs Node + Google Chrome + playwright-core, installed once by hand:
-#   brew install node   and   cd "$DEST" && npm install   (the worker never installs anything)
+cp "$SRC/package-lock.json" "$DEST/" 2>/dev/null || true
+# browser capture: playwright-core from package.json/lock (no browser download; uses installed Chrome).
+# worker_id and Keychain items are left untouched, so no re-pairing.
 NODE="$(command -v node || true)"
 for d in /opt/homebrew/bin /usr/local/bin; do [[ -z "$NODE" && -x "$d/node" ]] && NODE="$d/node"; done
 NODEDIR="$(dirname "${NODE:-/opt/homebrew/bin/node}")"
-if [[ -z "$NODE" ]]; then echo "Browser capture: Node not found (brew install node, then re-run)."
-elif [[ ! -d "$DEST/node_modules/playwright-core" ]]; then echo "Browser capture: run once:  cd \"$DEST\" && npm install   then re-run."
-else echo "Browser capture: ready (node $("$NODE" -v))."; fi
+if [[ -z "$NODE" ]]; then
+  echo "Install Node: brew install node (or https://nodejs.org)"
+else
+  echo "node $("$NODE" -v): installing playwright-core..."
+  ( cd "$DEST" && PATH="$NODEDIR:$PATH" PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 "$NODEDIR/npm" install --omit=dev --no-audit --no-fund ) \
+    && echo "Browser capture: ready." || echo "npm install failed; browser capture unavailable (ffmpeg jobs still work)."
+fi
 [[ -d "/Applications/Google Chrome.app" ]] || echo "Browser capture: Google Chrome not found in /Applications."
 
 # 3. secrets -> Keychain (asked only if missing)

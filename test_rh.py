@@ -233,6 +233,8 @@ def cjob(**over):
 
 class Capture(unittest.TestCase):
     def test_valid(self): self.assertTrue(c.validate_job(cjob()))
+    def test_mkv_ok(self):
+        j = cjob(out="v.mkv"); j["outputs"] = ["v.mkv"]; self.assertTrue(c.validate_job(j))
     def test_rejects(self):
         for bad in (dict(seed="1"), dict(w=99999), dict(out="v.mov"), dict(bundle="x.tar"), dict(bundle_sha256="zz")):
             with self.assertRaises(c.ValidationError): c.validate_job(cjob(**bad))

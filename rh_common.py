@@ -96,8 +96,8 @@ def validate_capture(job, inputs, outputs):
         raise ValidationError("capture bundle must be a listed .tar input")
     if not isinstance(c["bundle_sha256"], str) or not HEX64.match(c["bundle_sha256"]):
         raise ValidationError("bad bundle_sha256")
-    if c["out"] not in outputs or not c["out"].endswith(".mp4") or len(outputs) != 1:
-        raise ValidationError("capture out must be the single .mp4 output")
+    if c["out"] not in outputs or not c["out"].endswith((".mp4", ".mkv")) or len(outputs) != 1:
+        raise ValidationError("capture out must be the single .mp4 or .mkv (lossless FFV1) output")
     for k, lo, hi in (("seed", 0, 2**31), ("w", 16, 3840), ("h", 16, 3840), ("limit", 0, 30 * 600)):
         if type(c[k]) is not int or not lo <= c[k] <= hi:
             raise ValidationError(f"capture {k} out of range")
