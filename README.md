@@ -28,14 +28,17 @@ swapped for `h264_videotoolbox`/`hevc_videotoolbox` (disable with `--no-videotoo
    **Only select repositories → m-fin/render-helper**; Repository permissions
    **Contents: Read and write** only (covers releases, release assets and tags; Metadata
    read-only is added automatically). 90-day expiry is fine.
-2. **Get the files:** repo page → Code → Download ZIP (or `git clone https://github.com/m-fin/render-helper.git`).
-3. **Run the installer in Terminal** from that folder:
+2. **Get the files:** sign in on github.com (the repo is private), open
+   https://github.com/m-fin/render-helper → green **Code** button → **Download ZIP**, then
+   double-click the ZIP in Downloads to unzip it.
+3. **Run the installer:** open Terminal, type `cd ` (with a space), drag the unzipped
+   folder into the Terminal window, press Enter, then run:
    ```
    bash install.command
    ```
    It copies the worker to `~/Library/Application Support/macrenderhelper`, checks for Homebrew
    ffmpeg, asks once for the token and the HMAC key (press Enter to generate a key; it is
-   printed once, so give it to Grok Bot in your private 1:1 chat as `RH_HMAC_KEY`), saves both
+   printed once; paste it into the masked secret box `RH_HMAC_KEY` in your 1:1 chat with Crave Builder, never as a chat message), saves both
    to the macOS Keychain, installs and loads the launchd agent, then runs a 1-second 64×64
    test render and prints **PASS** or **FAIL**. Safe to re-run (keeps existing Keychain items).
    If macOS asks to let python3 use the Keychain items, click **Always Allow**.
@@ -51,7 +54,7 @@ its own.)
 The bots need their **own** fine-grained token (same settings as step 1; a second token so
 either can be revoked alone) because the GitHub connector cannot upload release assets.
 Frog provides it through a secret request in his 1:1 chat with Grok Bot, exposed as env var
-`RH_GITHUB_TOKEN`, plus `RH_HMAC_KEY` from step 4. Nothing is stored in this repo.
+`RH_GITHUB_TOKEN`, plus `RH_HMAC_KEY` from step 3. Nothing is stored in this repo.
 
 End-to-end test (tiny, ~1 s, 64×64, rendered on the Mac):
 ```

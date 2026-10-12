@@ -46,8 +46,12 @@ else
   read -r -s -p "Paste the shared HMAC key, or press Enter to generate one: " KEY; echo
   if [[ -z "$KEY" ]]; then
     KEY="$(openssl rand -hex 32)"
-    echo "Generated HMAC key (give it to Grok Bot in your private 1:1 chat as RH_HMAC_KEY; never in a group chat):"
+    echo "Generated HMAC key (shown ONCE). Copy it now:"
+    echo ""
     echo "  $KEY"
+    echo ""
+    echo "Paste it into the masked secret box (RH_HMAC_KEY) in your 1:1 chat with Crave Builder."
+    echo "Never type or paste it as a normal chat message."
   fi
   security add-generic-password -U -a "$USER" -s macrenderhelper-hmac -w "$KEY"; unset KEY
 fi
