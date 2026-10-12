@@ -1,0 +1,24 @@
+{
+ "id": "20261012103316-a07e454a",
+ "bot": "drifthome",
+ "created": "2026-10-12T10:33:16Z",
+ "cmd": [
+  "capture"
+ ],
+ "inputs": [
+  "game.tar"
+ ],
+ "outputs": [
+  "test.mp4"
+ ],
+ "capture": {
+  "bundle": "game.tar",
+  "seed": 1,
+  "w": 1920,
+  "h": 1080,
+  "limit": 90,
+  "out": "test.mp4",
+  "bundle_sha256": "094059d9e206ae990bc01958965ca45497becfd3f22138a04843843322fcfaa3"
+ },
+ "sig": "b607b000133cb7c4f92f65a0a0e970138bb78c2d808935f91ff5d5bb4bd31aa1"
+}
