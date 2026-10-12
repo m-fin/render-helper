@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "",
+ "at": "2026-10-12T11:28:03Z",
+ "stats": {
+  "job_id": "20261012112501-b62adcbf",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T11:28:03Z",
+  "exit_code": 0,
+  "wall_s": 148.423,
+  "cpu_s": 454.921,
+  "input_bytes": 127264786,
+  "output_bytes": 11264595,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 7.582,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
