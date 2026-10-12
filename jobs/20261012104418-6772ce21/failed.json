@@ -1,0 +1,22 @@
+{
+ "exit_code": 234,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\nInput #0, png_pipe, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261012104418-6772ce21-ak8eoghy/in/2026-10-12-cabinfilter-1_sprite.png':\n  Duration: N/A, bitrate: N/A\n  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 16200x2400, 30 fps, 30 tbr, 30 tbn\nStream mapping:\n  Stream #0:0 (png) -> format:default\n  trim:default -> Stream #0:0 (png)\n[Parsed_crop_1 @ 0xa00c24b40] Failed to configure input pad on Parsed_crop_1\n[fc#0 @ 0xa01010000] Error reinitializing filters!\n[fc#0 @ 0xa01010000] Task finished with error code: -22 (Invalid argument)\n[fc#0 @ 0xa01010000] Terminating thread with return code -22 (Invalid argument)\n[vost#0:0/png @ 0xa00cc8000] [enc:png @ 0xa00c381c0] Could not open encoder before EOF\n[vost#0:0/png @ 0xa00cc8000] Task finished with error code: -22 (Invalid argument)\n[vost#0:0/png @ 0xa00cc8000] Terminating thread with return code -22 (Invalid argument)\n[out#0/image2 @ 0xa00c24300] Nothing was written into output file, because at least one of its streams received no packets.\nframe=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.65    \nConversion failed!\n",
+ "at": "2026-10-12T10:58:15Z",
+ "stats": {
+  "job_id": "20261012104418-6772ce21",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-12T10:58:15Z",
+  "exit_code": 234,
+  "wall_s": 0.997,
+  "cpu_s": 2.094,
+  "input_bytes": 592434,
+  "output_bytes": 0,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.035,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
