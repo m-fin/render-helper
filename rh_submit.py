@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bot side: queue an ffmpeg job for the Mac worker and fetch the results.
 
-Env: RH_GITHUB_TOKEN (fine-grained PAT, Contents R/W on m-fin/render-helper), RH_HMAC_KEY.
+Env: RH_GITHUB_TOKEN (fine-grained PAT, Contents R/W on m-fin/homerender), RH_HMAC_KEY.
 Example:
   rh_submit.py --bot video-creator -i frames.zip -o out.mp4 -- \
       ffmpeg -i {in:frames.zip} -c:v libx264 {out:out.mp4}

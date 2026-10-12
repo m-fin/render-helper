@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Mac side: pull ffmpeg jobs from m-fin/render-helper, run them locally, send results back.
+"""Mac side: pull ffmpeg jobs from m-fin/homerender, run them locally, send results back.
 
 Secrets come from the macOS Keychain:
-  security find-generic-password -s render-helper-github -w
-  security find-generic-password -s render-helper-hmac -w
+  security find-generic-password -s homerender-github -w
+  security find-generic-password -s homerender-hmac -w
 """
 import argparse, datetime, os, shutil, socket, subprocess, sys, tempfile, time
 from rh_common import (GitHub, Conflict, verify_job, validate_job, rewrite_args,
@@ -137,10 +137,10 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.selftest:
         return selftest(a.ffmpeg_dir, not a.no_videotoolbox)
-    gh = GitHub(keychain("render-helper-github"), a.repo)
-    key = keychain("render-helper-hmac").encode()
+    gh = GitHub(keychain("homerender-github"), a.repo)
+    key = keychain("homerender-hmac").encode()
     worker = socket.gethostname()
-    print(f"render-helper worker on {worker}, polling {a.repo}", flush=True)
+    print(f"HomeRender worker on {worker}, polling {a.repo}", flush=True)
     while True:
         try:
             for jid in pending_jobs(gh):
