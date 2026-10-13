@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\n[aist#0:0/pcm_s16le @ 0x7a8c0c180] Guessed Channel Layout: mono\nInput #0, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/vo_timeline_38s.wav':\n  Duration: 00:00:38.00, bitrate: 384 kb/s\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#1:0/pcm_s16le @ 0x7a8c0c300] Guessed Channel Layout: mono\nInput #1, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/cabin_loop.wav':\n  Duration: 00:02:24.00, bitrate: 705 kb/s\n  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#2:0/pcm_s16le @ 0x7a8c0c480] Guessed Channel Layout: mono\nInput #2, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/zero_g_layer.wav':\n  Duration: 00:02:24.00, bitrate: 705 kb/s\n  Stream #2:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#3:0/pcm_s16le @ 0x7a8c0c600] Guessed Channel Layout: mono\nInput #3, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/theme_full.wav':\n  Duration: 00:00:10.40, bitrate: 705 kb/s\n  Stream #3:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#4:0/pcm_s16le @ 0x7a8c0c780] Guessed Channel Layout: mono\nInput #4, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/wake.wav':\n  Duration: 00:00:02.50, bitrate: 705 kb/s\n  Stream #4:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#5:0/pcm_s16le @ 0x7a8c0c900] Guessed Channel Layout: mono\nInput #5, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/float_start.wav':\n  Duration: 00:00:02.00, bitrate: 705 kb/s\n  Stream #5:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\n[aist#6:0/pcm_s16le @ 0x7a8c0ca80] Guessed Channel Layout: mono\nInput #6, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/in/cockpit_reach.wav':\n  Duration: 00:00:01.20, bitrate: 705 kb/s\n  Stream #6:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s\nStream mapping:\n  Stream #0:0 (pcm_s16le) -> aformat:default\n  Stream #0:0 (pcm_s16le) -> amix\n  Stream #1:0 (pcm_s16le) -> aformat:default\n  Stream #2:0 (pcm_s16le) -> aformat:default\n  Stream #3:0 (pcm_s16le) -> aformat:default\n  Stream #4:0 (pcm_s16le) -> aformat:default\n  Stream #5:0 (pcm_s16le) -> aformat:default\n  Stream #6:0 (pcm_s16le) -> aformat:default\n  aformat:default -> Stream #0:0 (pcm_s16le)\nOutput #0, wav, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013123611-7b3467ed-o_3zm78v/out/first_light_premix_38s.wav':\n  Metadata:\n    ISFT            : Lavf63.1.102\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 pcm_s16le\nsize=    1280KiB time=00:00:08.09 bitrate=1294.6kbits/s speed=14.2x elapsed=0:00:00.57    \nsize=    3328KiB time=00:00:18.09 bitrate=1506.3kbits/s speed=15.5x elapsed=0:00:01.17    \nsize=    5120KiB time=00:00:28.29 bitrate=1482.1kbits/s speed=  16x elapsed=0:00:01.76    \n[out#0/wav @ 0x7a8c38b40] video:0KiB audio:7125KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.001069%\nsize=    7125KiB time=00:00:38.00 bitrate=1536.0kbits/s speed=  17x elapsed=0:00:02.23    \n",
+ "at": "2026-10-13T12:36:57Z",
+ "stats": {
+  "job_id": "20261013123611-7b3467ed",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-13T12:36:57Z",
+  "exit_code": 0,
+  "wall_s": 2.529,
+  "cpu_s": 2.486,
+  "input_bytes": 28645928,
+  "output_bytes": 7296078,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.041,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
