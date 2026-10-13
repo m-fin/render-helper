@@ -1,0 +1,44 @@
+{
+ "id": "20261013123611-7b3467ed",
+ "bot": "video-creator",
+ "created": "2026-10-13T12:36:11Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:vo_timeline_38s.wav}",
+  "-i",
+  "{in:cabin_loop.wav}",
+  "-i",
+  "{in:zero_g_layer.wav}",
+  "-i",
+  "{in:theme_full.wav}",
+  "-i",
+  "{in:wake.wav}",
+  "-i",
+  "{in:float_start.wav}",
+  "-i",
+  "{in:cockpit_reach.wav}",
+  "-filter_complex",
+  "[0:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono[vo];[1:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,atrim=0:27,afade=t=out:st=25.5:d=1.0,apad=whole_dur=38,volume=0.158[cabin];[2:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,adelay=3450:all=1,atrim=0:27,afade=t=out:st=25.5:d=1.0,apad=whole_dur=38,volume=0.14[zerog];[3:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,adelay=27000:all=1,apad=whole_dur=38,atrim=0:38,volume=0.158[theme];[4:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,adelay=1280:all=1,apad=whole_dur=38,atrim=0:38,volume=0.75[wake];[5:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,adelay=3450:all=1,apad=whole_dur=38,atrim=0:38,volume=0.7[float];[6:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=mono,adelay=14350:all=1,apad=whole_dur=38,atrim=0:38,volume=0.7[cockpit];[cabin][zerog][theme][wake][float][cockpit]amix=inputs=6:duration=first:dropout_transition=0:normalize=0[bed];[bed][vo]sidechaincompress=threshold=0.05:ratio=8:attack=40:release=400:makeup=1[ducked];[ducked][vo]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,atrim=0:38,apad=whole_dur=38,aformat=sample_fmts=s16:sample_rates=48000:channel_layouts=stereo[a]",
+  "-map",
+  "[a]",
+  "-t",
+  "38",
+  "-c:a",
+  "pcm_s16le",
+  "{out:first_light_premix_38s.wav}"
+ ],
+ "inputs": [
+  "vo_timeline_38s.wav",
+  "cabin_loop.wav",
+  "zero_g_layer.wav",
+  "theme_full.wav",
+  "wake.wav",
+  "float_start.wav",
+  "cockpit_reach.wav"
+ ],
+ "outputs": [
+  "first_light_premix_38s.wav"
+ ],
+ "sig": "b46ea9350f889fab3174bb6a857177ddf628ef9d1bacf6f811f5c21ab9b982c1"
+}
