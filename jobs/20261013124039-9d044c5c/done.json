@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\n[aist#0:0/pcm_s16le @ 0xc60c10180] Guessed Channel Layout: stereo\nInput #0, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013124039-9d044c5c-4r9q_b1g/in/first_light_premix_38s.v1.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, bitrate: 1536 kb/s\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\nStream mapping:\n  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))\nOutput #0, wav, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261013124039-9d044c5c-4r9q_b1g/out/ln_pass1.wav':\n  Metadata:\n    ISFT            : Lavf63.1.102\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 192000 Hz, stereo, s16, 6144 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 pcm_s16le\nsize=    6400KiB time=00:00:08.90 bitrate=5890.9kbits/s speed=15.4x elapsed=0:00:00.57    \nsize=   14080KiB time=00:00:19.00 bitrate=6070.7kbits/s speed=16.2x elapsed=0:00:01.17    \nsize=   21504KiB time=00:00:28.90 bitrate=6095.5kbits/s speed=16.3x elapsed=0:00:01.76    \n[Parsed_loudnorm_0 @ 0xc61074900] \n{\n\t\"input_i\" : \"-17.57\",\n\t\"input_tp\" : \"-4.49\",\n\t\"input_lra\" : \"11.40\",\n\t\"input_thresh\" : \"-28.11\",\n\t\"output_i\" : \"-15.80\",\n\t\"output_tp\" : \"-2.28\",\n\t\"output_lra\" : \"6.50\",\n\t\"output_thresh\" : \"-26.06\",\n\t\"normalization_type\" : \"dynamic\",\n\t\"target_offset\" : \"1.80\"\n}\n[out#0/wav @ 0xc61074180] video:0KiB audio:28500KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000350%\nsize=   28500KiB time=00:00:38.00 bitrate=6144.0kbits/s speed=  17x elapsed=0:00:02.23    \n",
+ "at": "2026-10-13T12:41:07Z",
+ "stats": {
+  "job_id": "20261013124039-9d044c5c",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-13T12:41:07Z",
+  "exit_code": 0,
+  "wall_s": 2.406,
+  "cpu_s": 2.442,
+  "input_bytes": 7296078,
+  "output_bytes": 29184102,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.041,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
