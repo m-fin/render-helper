@@ -8,7 +8,7 @@ Secrets come from the macOS Keychain:
 import argparse, datetime, json, os, platform, resource, shutil, socket, subprocess, sys, tempfile, threading, time, uuid
 from rh_xfer import file_sha256, purge_old, serve_tailscale
 from rh_common import (GitHub, Conflict, verify_job, validate_job, rewrite_args,
-                       prefer_videotoolbox, ValidationError, REPO, sign_obj,
+                       prefer_videotoolbox, ValidationError, post_args, REPO, sign_obj,
                        estimate_cloud_cpu_minutes, HEARTBEAT_EVERY)
 
 HOME_DIR = os.path.expanduser("~/Library/Application Support/macrenderhelper")
@@ -261,8 +261,24 @@ def run_job(gh, job_id, key, ffmpeg_dir, vt=True, log=print, worker="", node_dir
           try:
             p = subprocess.run(args, cwd=work, capture_output=True, text=True, timeout=TIMEOUT, shell=False, env=env)
             code, tail = p.returncode, (p.stderr or "") + (p.stdout or "")
+            sw = [x.replace("h264_videotoolbox", "libx264").replace("hevc_videotoolbox", "libx265") for x in args]
+            if code != 0 and sw != args:  # retry: VideoToolbox busy/unavailable -> software encode
+                log(f"{job_id}: VideoToolbox failed, retrying with software encoder")
+                p = subprocess.run(sw, cwd=work, capture_output=True, text=True, timeout=TIMEOUT, shell=False, env=env)
+                code, tail = p.returncode, tail[-1500:] + "\n[retry software]\n" + (p.stderr or "") + (p.stdout or "")
           except subprocess.TimeoutExpired:
             code, tail = -9, "timed out"
+        post = job.get("post")
+        if code == 0 and post:
+            for n in [n for n in job["outputs"] if n.endswith((".mp4", ".mov", ".mkv"))][:1]:
+                fp, tmp = os.path.join(outd, n), os.path.join(outd, "post-" + n)
+                aud = os.path.join(ind, post["audio"]) if post.get("audio") else None
+                q = subprocess.run(post_args(os.path.join(ffmpeg_dir, "ffmpeg"), fp, aud, post.get("lufs"), tmp),
+                                   capture_output=True, text=True, timeout=TIMEOUT)
+                if q.returncode == 0:
+                    os.replace(tmp, fp); tail += f"\n[post ok: audio={bool(aud)} lufs={post.get('lufs')}]"
+                else:
+                    code, tail = q.returncode, tail + "\n[post failed]\n" + q.stderr[-1500:]
         wall = time.monotonic() - t0
         ru1 = resource.getrusage(resource.RUSAGE_CHILDREN)
         cpu = (ru1.ru_utime - ru0.ru_utime) + (ru1.ru_stime - ru0.ru_stime)

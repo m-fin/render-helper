@@ -12,8 +12,10 @@ from rh_common import Conflict, GitHub, sign_job, verify_obj, validate_job, chec
 MAX_INPUT_BYTES = 1900 * 1024 * 1024
 
 
-def build_job(bot, cmd, inputs, outputs, job_id=None, created=None, exact_encoder=False, capture=None):
+def build_job(bot, cmd, inputs, outputs, job_id=None, created=None, exact_encoder=False, capture=None, post=None):
     j = _base(bot, cmd, inputs, outputs, job_id, created)
+    if post:
+        j["post"] = post
     if exact_encoder:
         j["exact_encoder"] = True
     if capture is not None:
@@ -142,12 +144,27 @@ def main(argv=None):
     ap.add_argument("--transport", choices=("github", "tailscale"), default="github",
                     help="tailscale: send files over the Mac's signed Tailscale endpoint (queue stays on GitHub)")
     ap.add_argument("--xfer-host", default=os.environ.get("RH_XFER_HOST", "100.78.67.27"))
+    ap.add_argument("--audio", help="mux this audio file into the first video output on the Mac")
+    ap.add_argument("--lufs", type=float, help="loudness-normalise output audio (e.g. -14)")
+    ap.add_argument("--resume", metavar="JOB_ID", help="re-attach to a queued job and wait/report status")
     ap.add_argument("cmd", nargs=argparse.REMAINDER)
     a = ap.parse_args(argv)
     cmd = a.cmd[1:] if a.cmd and a.cmd[0] == "--" else a.cmd
     token, key = os.environ.get("RH_GITHUB_TOKEN"), os.environ.get("RH_HMAC_KEY")
     if not token or not key:
         raise SystemExit("set RH_GITHUB_TOKEN and RH_HMAC_KEY")
+    if a.resume:
+        gh = GitHub(token, a.repo)
+        check_name(a.resume)
+        j, _ = gh.get_file(f"jobs/{a.resume}/job.json")
+        if not j:
+            raise SystemExit("no such job")
+        claimed, _ = gh.get_file(f"jobs/{a.resume}/claimed.json")
+        print(f"{a.resume}: {'claimed by ' + str(claimed.get('worker')) if claimed else 'queued, waiting for Mac'}", file=sys.stderr)
+        return _report(*_wait(gh, j, 15, 3 * 3600))
+    post = {k: v for k, v in (("audio", os.path.basename(a.audio) if a.audio else None), ("lufs", a.lufs)) if v is not None} or None
+    if a.audio:
+        a.input.append(a.audio)
     cap = None
     if a.capture:
         import hashlib
@@ -158,7 +175,7 @@ def main(argv=None):
             from rh_common import BENCH_OUTPUTS
             a.output = list(BENCH_OUTPUTS); cap["out"] = BENCH_OUTPUTS[0]; cap["bench"] = 1
         cmd, a.input = ["capture"], [a.capture] + a.input
-    job = build_job(a.bot, cmd, a.input, a.output, exact_encoder=a.exact_encoder, capture=cap)
+    job = build_job(a.bot, cmd, a.input, a.output, exact_encoder=a.exact_encoder, capture=cap, post=post)
     xfer = None
     if a.transport == "tailscale":
         from rh_xfer import XferClient

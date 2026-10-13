@@ -62,6 +62,7 @@ def validate_job(job):
     if "exact_encoder" in job and type(job["exact_encoder"]) is not bool:
         raise ValidationError("exact_encoder must be true/false")
     check_name(job["id"])
+    validate_post(job)
     inputs = [check_name(n) for n in job["inputs"]]
     outputs = [check_name(n) for n in job["outputs"]]
     if set(inputs) & set(outputs):
@@ -81,6 +82,31 @@ def validate_job(job):
     for a in cmd[1:]:
         validate_arg(a, inputs, outputs)
     return True
+
+
+def validate_post(job):
+    """Optional post pass on the Mac after a successful render: mux an audio input (so videos
+    aren't silent) and/or loudness-normalise to a target LUFS (YouTube/SoundCloud: -14)."""
+    p = job.get("post")
+    if p is None:
+        return
+    if not isinstance(p, dict) or not set(p) <= {"audio", "lufs"} or not p:
+        raise ValidationError("post takes only audio and/or lufs")
+    if "audio" in p and (check_name(p["audio"]) not in job["inputs"]):
+        raise ValidationError("post audio must be a listed input")
+    if "lufs" in p and (type(p["lufs"]) not in (int, float) or not -30 <= p["lufs"] <= -5):
+        raise ValidationError("post lufs out of range")
+
+
+def post_args(ffmpeg, video, audio, lufs, out, vt=True):
+    a = [ffmpeg, "-nostdin", "-y", "-i", video]
+    if audio:
+        a += ["-stream_loop", "-1", "-i", audio, "-map", "0:v:0", "-map", "1:a:0", "-shortest"]
+    a += ["-c:v", "copy"]
+    if lufs is not None:
+        a += ["-af", f"loudnorm=I={lufs}:TP=-1.5:LRA=11"]
+    a += ["-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", out]
+    return a
 
 
 def validate_transport(job, inputs):

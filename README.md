@@ -99,3 +99,9 @@ Input hashes are pinned in the signed job; output hashes come back in a signed d
 Box side: `rh_submit.py --transport tailscale ...` pushes inputs and pulls outputs over the endpoint
 (through `tailscale nc`, or a SOCKS5 proxy if `RH_XFER_SOCKS=host:port` is set). The job queue stays
 on GitHub; no release is made. If the endpoint doesn't answer, it falls back to `--transport github`.
+
+## Post pass, retry, resume
+- `--audio track.wav` muxes audio into the first video output on the Mac (looped/trimmed to video length).
+- `--lufs -14` loudness-normalises output audio (loudnorm, TP -1.5).
+- Worker retries a failed VideoToolbox encode once with libx264/libx265.
+- `rh_submit.py --bot x --resume JOB_ID` re-attaches to a queued job.
