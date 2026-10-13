@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "frame 0/150 0s\n{\"seed\":1,\"W\":1280,\"H\":720,\"frames\":150,\"video_s\":5,\"run_end_s\":38,\"capture_s\":12.415}\n",
+ "at": "2026-10-13T11:57:58Z",
+ "stats": {
+  "job_id": "20261013115706-7af26711",
+  "bot": "premiere-camfix",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-13T11:57:58Z",
+  "exit_code": 0,
+  "wall_s": 29.272,
+  "cpu_s": 20.854,
+  "input_bytes": 2150400,
+  "output_bytes": 1574549,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.348,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
