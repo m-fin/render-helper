@@ -1,0 +1,43 @@
+{
+ "id": "20261013124222-0b46e4df",
+ "bot": "video-creator",
+ "created": "2026-10-13T12:42:22Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:drifthome_cabin_v2_1920x1080.mp4}",
+  "-i",
+  "{in:first_light_premix_38s.wav}",
+  "-map",
+  "0:v:0",
+  "-map",
+  "1:a:0",
+  "-c:v",
+  "libx264",
+  "-b:v",
+  "10M",
+  "-maxrate",
+  "12M",
+  "-bufsize",
+  "20M",
+  "-pix_fmt",
+  "yuv420p",
+  "-c:a",
+  "aac",
+  "-b:a",
+  "192k",
+  "-t",
+  "38",
+  "-movflags",
+  "+faststart",
+  "{out:first_light_1920x1080.mp4}"
+ ],
+ "inputs": [
+  "drifthome_cabin_v2_1920x1080.mp4",
+  "first_light_premix_38s.wav"
+ ],
+ "outputs": [
+  "first_light_1920x1080.mp4"
+ ],
+ "sig": "7a337e7f3ea43c25c847c447d8295e1cfbbe9adc4b643bd431f543dc7f74135f"
+}
