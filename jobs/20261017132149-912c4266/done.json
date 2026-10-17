@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "odec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132149-912c4266-9zsq7mua/in/drifthome_cabin_v3_1080x1920.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, start: 0.000000, bitrate: 9989 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, smpte170m/unknown/unknown, progressive), 1080x1920, 9987 kb/s, SAR 1:1 DAR 9:16, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n    Side data:\n      ICC Profile: (456 bytes)\n[aist#1:0/pcm_s16le @ 0xa7f00c480] Guessed Channel Layout: stereo\nInput #1, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132149-912c4266-9zsq7mua/in/first_light_premix_38s.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, bitrate: 1536 kb/s\n  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\nStream mapping:\n  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_videotoolbox))\n  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))\n[swscaler @ 0xa80390000] deprecated pixel format used, make sure you did set range correctly\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132149-912c4266-9zsq7mua/out/first_light_1080x1920.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(pc, smpte170m/unknown/unknown, progressive), 1080x1920 [SAR 1:1 DAR 9:16], q=2-31, 10000 kb/s, 30 fps, 15360 tbn (default)\n    Metadata:\n      encoder         : Lavc63.1.102 h264_videotoolbox\n      handler_name    : VideoHandler\n    Side data:\n      ICC Profile: (456 bytes)\n  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 aac\nframe=   84 fps= 70 q=-0.0 size=     256KiB time=00:00:02.85 bitrate= 733.7kbits/s speed=2.39x elapsed=0:00:01.19    \nframe=  171 fps= 95 q=-0.0 size=    1280KiB time=00:00:05.76 bitrate=1820.5kbits/s speed=3.21x elapsed=0:00:01.79    \nframe=  257 fps=107 q=-0.0 size=    2560KiB time=00:00:08.76 bitrate=2391.9kbits/s speed=3.65x elapsed=0:00:02.40    \nframe=  328 fps=109 q=-0.0 size=    4352KiB time=00:00:10.94 bitrate=3257.7kbits/s speed=3.63x elapsed=0:00:03.01    \nframe=  421 fps=116 q=-0.0 size=    6400KiB time=00:00:14.20 bitrate=3690.1kbits/s speed=3.93x elapsed=0:00:03.61    \nframe=  524 fps=124 q=-0.0 size=    8192KiB time=00:00:17.72 bitrate=3785.5kbits/s speed=4.21x elapsed=0:00:04.21    \nframe=  620 fps=129 q=-0.0 size=    9216KiB time=00:00:20.77 bitrate=3633.4kbits/s speed=4.32x elapsed=0:00:04.81    \nframe=  709 fps=131 q=-0.0 size=   10240KiB time=00:00:23.78 bitrate=3526.6kbits/s speed= 4.4x elapsed=0:00:05.40    \nframe=  820 fps=137 q=-0.0 size=   11520KiB time=00:00:27.54 bitrate=3426.6kbits/s speed=4.59x elapsed=0:00:06.00    \nframe=  929 fps=141 q=-0.0 size=   12544KiB time=00:00:31.04 bitrate=3310.6kbits/s speed= 4.7x elapsed=0:00:06.60    \nframe= 1056 fps=147 q=-0.0 size=   13824KiB time=00:00:35.22 bitrate=3215.3kbits/s speed=4.89x elapsed=0:00:07.20    \n[mp4 @ 0xa7f020780] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0xa7ec20480] video:13522KiB audio:866KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.237777%\nframe= 1140 fps=150 q=-0.0 Lsize=   14422KiB time=00:00:38.00 bitrate=3109.1kbits/s speed=5.01x elapsed=0:00:07.57    \n[aac @ 0xa7edcc380] Qavg: 4870.128\n",
+ "at": "2026-10-17T13:22:50Z",
+ "stats": {
+  "job_id": "20261017132149-912c4266",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-17T13:22:50Z",
+  "exit_code": 0,
+  "wall_s": 7.853,
+  "cpu_s": 18.781,
+  "input_bytes": 54743878,
+  "output_bytes": 14768188,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.313,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
