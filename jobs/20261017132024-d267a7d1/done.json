@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": " 10184 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, smpte170m/unknown/unknown, progressive), 1920x1080, 10182 kb/s, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n    Side data:\n      ICC Profile: (456 bytes)\n[aist#1:0/pcm_s16le @ 0xc6f00c480] Guessed Channel Layout: stereo\nInput #1, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132024-d267a7d1-uyj1v5n4/in/first_light_premix_38s.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, bitrate: 1536 kb/s\n  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\nStream mapping:\n  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_videotoolbox))\n  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))\n[swscaler @ 0xc703cc000] deprecated pixel format used, make sure you did set range correctly\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132024-d267a7d1-uyj1v5n4/out/first_light_1920x1080.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(pc, smpte170m/unknown/unknown, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 10000 kb/s, 30 fps, 15360 tbn (default)\n    Metadata:\n      encoder         : Lavc63.1.102 h264_videotoolbox\n      handler_name    : VideoHandler\n    Side data:\n      ICC Profile: (456 bytes)\n  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 aac\nframe=   55 fps= 46 q=-0.0 size=     256KiB time=00:00:01.87 bitrate=1117.3kbits/s speed=1.56x elapsed=0:00:01.20    \nframe=  118 fps= 65 q=-0.0 size=     512KiB time=00:00:04.05 bitrate=1034.9kbits/s speed=2.25x elapsed=0:00:01.80    \nframe=  170 fps= 71 q=-0.0 size=    1280KiB time=00:00:05.93 bitrate=1768.1kbits/s speed=2.46x elapsed=0:00:02.40    \nframe=  226 fps= 75 q=-0.0 size=    2304KiB time=00:00:07.72 bitrate=2444.1kbits/s speed=2.56x elapsed=0:00:03.01    \nframe=  293 fps= 81 q=-0.0 size=    4352KiB time=00:00:09.83 bitrate=3625.1kbits/s speed=2.72x elapsed=0:00:03.61    \nframe=  348 fps= 83 q=-0.0 size=    5376KiB time=00:00:11.79 bitrate=3733.1kbits/s speed=2.81x elapsed=0:00:04.20    \nframe=  418 fps= 87 q=-0.0 size=    6656KiB time=00:00:14.12 bitrate=3860.9kbits/s speed=2.94x elapsed=0:00:04.80    \nframe=  478 fps= 88 q=-0.0 size=    7936KiB time=00:00:16.19 bitrate=4015.1kbits/s speed=   3x elapsed=0:00:05.40    \nframe=  557 fps= 93 q=-0.0 size=    9472KiB time=00:00:18.73 bitrate=4142.7kbits/s speed=3.12x elapsed=0:00:06.00    \nframe=  636 fps= 96 q=-0.0 size=   10240KiB time=00:00:21.29 bitrate=3940.1kbits/s speed=3.22x elapsed=0:00:06.60    \nframe=  693 fps= 96 q=-0.0 size=   11520KiB time=00:00:23.25 bitrate=4058.4kbits/s speed=3.23x elapsed=0:00:07.20    \nframe=  760 fps= 97 q=-0.0 size=   12288KiB time=00:00:25.53 bitrate=3942.0kbits/s speed=3.27x elapsed=0:00:07.80    \nframe=  814 fps= 97 q=-0.0 size=   13056KiB time=00:00:27.30 bitrate=3916.8kbits/s speed=3.25x elapsed=0:00:08.40    \nframe=  882 fps= 98 q=-0.0 size=   13824KiB time=00:00:29.52 bitrate=3835.6kbits/s speed=3.28x elapsed=0:00:09.01    \nframe=  967 fps=101 q=-0.0 size=   14592KiB time=00:00:32.32 bitrate=3698.6kbits/s speed=3.36x elapsed=0:00:09.61    \nframe= 1059 fps=104 q=-0.0 size=   15360KiB time=00:00:35.49 bitrate=3544.6kbits/s speed=3.48x elapsed=0:00:10.20    \n[mp4 @ 0xc6ec18a00] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0xc6f068480] video:15198KiB audio:866KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.212978%\nframe= 1140 fps=108 q=-0.0 Lsize=   16097KiB time=00:00:38.00 bitrate=3470.2kbits/s speed= 3.6x elapsed=0:00:10.55    \n[aac @ 0xc6f17c380] Qavg: 4870.128\n",
+ "at": "2026-10-17T13:21:33Z",
+ "stats": {
+  "job_id": "20261017132024-d267a7d1",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-17T13:21:33Z",
+  "exit_code": 0,
+  "wall_s": 10.863,
+  "cpu_s": 20.64,
+  "input_bytes": 55671665,
+  "output_bytes": 16483645,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.344,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
