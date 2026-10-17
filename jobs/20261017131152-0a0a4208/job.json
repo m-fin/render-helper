@@ -1,0 +1,28 @@
+{
+ "id": "20261017131152-0a0a4208",
+ "bot": "video-creator",
+ "created": "2026-10-17T13:11:52Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:first_light_premix_38s_raw.wav}",
+  "-af",
+  "loudnorm=I=-14.8:TP=-2.0:LRA=12:measured_I=-20.90:measured_TP=-3.88:measured_LRA=16.30:measured_thresh=-32.20:offset=2.26:linear=true:print_format=summary,aresample=48000,atrim=0:38,apad=whole_dur=38",
+  "-t",
+  "38",
+  "-ar",
+  "48000",
+  "-ac",
+  "2",
+  "-c:a",
+  "pcm_s16le",
+  "{out:first_light_premix_38s.wav}"
+ ],
+ "inputs": [
+  "first_light_premix_38s_raw.wav"
+ ],
+ "outputs": [
+  "first_light_premix_38s.wav"
+ ],
+ "sig": "92779e714d611f3cc06694f996186c345aee728e2ddec85bd8a6d8d1d9d86942"
+}
