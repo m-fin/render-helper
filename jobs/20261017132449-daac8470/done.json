@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": " '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132449-daac8470-llflhmja/in/drifthome_cabin_v3_1920x1080.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, start: 0.000000, bitrate: 10184 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, smpte170m/unknown/unknown, progressive), 1920x1080, 10182 kb/s, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n    Side data:\n      ICC Profile: (456 bytes)\n[aist#1:0/pcm_s16le @ 0xc5cc18480] Guessed Channel Layout: stereo\nInput #1, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132449-daac8470-llflhmja/in/first_light_premix_38s.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:00:38.00, bitrate: 1536 kb/s\n  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\n[out#0/mp4 @ 0xc5cc089c0] Codec AVOption preset (Encoding preset) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.\nStream mapping:\n  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_videotoolbox))\n  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))\n[swscaler @ 0xc5e3cc000] deprecated pixel format used, make sure you did set range correctly\nOutput #0, mp4, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261017132449-daac8470-llflhmja/out/first_light_1920x1080.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709/unknown/unknown, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 10000 kb/s, 30 fps, 15360 tbn (default)\n    Metadata:\n      encoder         : Lavc63.1.102 h264_videotoolbox\n      handler_name    : VideoHandler\n    Side data:\n      ICC Profile: (456 bytes)\n  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 aac\nframe=    0 fps=0.0 q=0.0 size=       0KiB time=00:00:00.38 bitrate=   1.0kbits/s speed=0.634x elapsed=0:00:00.60    \nframe=  116 fps= 96 q=-0.0 size=     512KiB time=00:00:03.98 bitrate=1051.5kbits/s speed=3.31x elapsed=0:00:01.20    \nframe=  212 fps=118 q=-0.0 size=    1792KiB time=00:00:07.29 bitrate=2012.1kbits/s speed=4.04x elapsed=0:00:01.80    \nframe=  308 fps=128 q=-0.0 size=    3584KiB time=00:00:10.53 bitrate=2786.0kbits/s speed=4.39x elapsed=0:00:02.40    \nframe=  389 fps=130 q=-0.0 size=    4864KiB time=00:00:13.09 bitrate=3042.0kbits/s speed=4.36x elapsed=0:00:03.00    \nframe=  484 fps=134 q=-0.0 size=    6400KiB time=00:00:16.44 bitrate=3187.6kbits/s speed=4.57x elapsed=0:00:03.60    \nframe=  597 fps=142 q=-0.0 size=    7680KiB time=00:00:20.01 bitrate=3144.1kbits/s speed=4.76x elapsed=0:00:04.20    \nframe=  699 fps=145 q=-0.0 size=    9216KiB time=00:00:23.42 bitrate=3223.1kbits/s speed=4.88x elapsed=0:00:04.80    \nframe=  809 fps=150 q=-0.0 size=   10240KiB time=00:00:27.43 bitrate=3057.7kbits/s speed=5.08x elapsed=0:00:05.40    \nframe=  919 fps=153 q=-0.0 size=   11264KiB time=00:00:30.76 bitrate=2999.6kbits/s speed=5.12x elapsed=0:00:06.00    \nframe= 1030 fps=156 q=-0.0 size=   12032KiB time=00:00:34.45 bitrate=2860.9kbits/s speed=5.22x elapsed=0:00:06.60    \n[mp4 @ 0xc5cc20a00] Starting second pass: moving the moov atom to the beginning of the file\n[out#0/mp4 @ 0xc5cc089c0] video:11830KiB audio:866KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.269462%\nframe= 1140 fps=160 q=-0.0 Lsize=   12730KiB time=00:00:38.00 bitrate=2744.4kbits/s speed=5.32x elapsed=0:00:07.13    \n[aac @ 0xc5d274380] Qavg: 4870.128\n",
+ "at": "2026-10-17T13:25:31Z",
+ "stats": {
+  "job_id": "20261017132449-daac8470",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-17T13:25:31Z",
+  "exit_code": 0,
+  "wall_s": 7.366,
+  "cpu_s": 19.131,
+  "input_bytes": 55671665,
+  "output_bytes": 13035759,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.319,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
