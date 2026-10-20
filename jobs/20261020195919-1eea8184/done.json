@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "frame 0/300 0s\nframe 150/300 10s\n{\"seed\":1,\"W\":1920,\"H\":1080,\"frames\":300,\"video_s\":10,\"run_end_s\":37.9833,\"capture_s\":23.658}\n",
+ "at": "2026-10-20T20:00:33Z",
+ "stats": {
+  "job_id": "20261020195919-1eea8184",
+  "bot": "crave-builder",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-20T20:00:33Z",
+  "exit_code": 0,
+  "wall_s": 33.888,
+  "cpu_s": 34.94,
+  "input_bytes": 2242560,
+  "output_bytes": 10397385,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.582,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
