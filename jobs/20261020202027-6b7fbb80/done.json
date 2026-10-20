@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "frame 0/4650 0s\nframe 150/4650 12s\nframe 300/4650 22s\nframe 450/4650 31s\nframe 600/4650 41s\nframe 750/4650 50s\nframe 900/4650 67s\nframe 1050/4650 78s\nframe 1200/4650 89s\nframe 1350/4650 99s\nframe 1500/4650 110s\nframe 1650/4650 121s\nframe 1800/4650 132s\nframe 1950/4650 143s\nframe 2100/4650 154s\nframe 2250/4650 164s\nframe 2400/4650 174s\nframe 2550/4650 183s\nframe 2700/4650 193s\nframe 2850/4650 202s\nframe 3000/4650 211s\nframe 3150/4650 221s\nframe 3300/4650 231s\nframe 3450/4650 240s\nframe 3600/4650 250s\nframe 3750/4650 259s\nframe 3900/4650 269s\nframe 4050/4650 277s\nframe 4200/4650 285s\nframe 4350/4650 294s\nframe 4500/4650 301s\n{\"seed\":1,\"W\":1080,\"H\":1920,\"frames\":4650,\"video_s\":155,\"run_end_s\":154.9833,\"capture_s\":312.491}\n",
+ "at": "2026-10-20T20:26:51Z",
+ "stats": {
+  "job_id": "20261020202027-6b7fbb80",
+  "bot": "crave-builder",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-20T20:26:51Z",
+  "exit_code": 0,
+  "wall_s": 318.057,
+  "cpu_s": 379.885,
+  "input_bytes": 2242560,
+  "output_bytes": 221457326,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 6.331,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
