@@ -1,0 +1,25 @@
+{
+ "id": "20261020215111-d1b4fd41",
+ "bot": "video-creator",
+ "created": "2026-10-20T21:51:11Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:first_light_premix_38s_raw.wav}",
+  "-af",
+  "loudnorm=I=-14.8:TP=-2.0:LRA=20:print_format=json",
+  "-ar",
+  "48000",
+  "-c:a",
+  "pcm_s16le",
+  "{out:first_light_premix_38s_pass1.wav}"
+ ],
+ "inputs": [
+  "first_light_premix_38s_raw.wav"
+ ],
+ "outputs": [
+  "first_light_premix_38s_pass1.wav"
+ ],
+ "exact_encoder": true,
+ "sig": "32f56fe6e4d4ae3bd93bcf84ffffab2eef3f283d9ba91171ce54f19c6a5d37da"
+}
