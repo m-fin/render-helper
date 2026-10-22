@@ -1,0 +1,25 @@
+{
+ "id": "20261022131353-54052549",
+ "bot": "video-creator",
+ "created": "2026-10-22T13:13:53Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:drifthome_ep2_premix_155s_raw.wav}",
+  "-af",
+  "loudnorm=I=-14.8:TP=-2.0:LRA=20:print_format=json",
+  "-ar",
+  "48000",
+  "-c:a",
+  "pcm_s16le",
+  "{out:drifthome_ep2_premix_155s_pass1.wav}"
+ ],
+ "inputs": [
+  "drifthome_ep2_premix_155s_raw.wav"
+ ],
+ "outputs": [
+  "drifthome_ep2_premix_155s_pass1.wav"
+ ],
+ "exact_encoder": true,
+ "sig": "4fe4976df9c4da14e3f290e658d4b26d46a77ebb78f3c9950cb332ebe0b675d8"
+}
