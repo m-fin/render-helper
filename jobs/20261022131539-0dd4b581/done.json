@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers\n  built with Apple clang version 21.0.0 (clang-2100.3.34.2)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/9.0.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      61.  1.102 / 61.  1.102\n  libavcodec     63.  1.102 / 63.  1.102\n  libavformat    63.  1.102 / 63.  1.102\n  libavdevice    63.  1.102 / 63.  1.102\n  libavfilter    12.  1.102 / 12.  1.102\n  libswscale     10.  1.102 / 10.  1.102\n  libswresample   7.  1.102 /  7.  1.102\n[aist#0:0/pcm_f32le @ 0xb36c0c180] Guessed Channel Layout: stereo\nInput #0, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261022131539-0dd4b581-5pz61noi/in/drifthome_ep2_premix_155s_raw.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:02:35.00, bitrate: 3072 kb/s\n  Stream #0:0: Audio: pcm_f32le ([3][0][0][0] / 0x0003), 48000 Hz, stereo, flt, 3072 kb/s\nStream mapping:\n  Stream #0:0 -> #0:0 (pcm_f32le (native) -> pcm_s16le (native))\nOutput #0, wav, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261022131539-0dd4b581-5pz61noi/out/drifthome_ep2_premix_155s.wav':\n  Metadata:\n    ISFT            : Lavf63.1.102\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 pcm_s16le\nsize=    9728KiB time=00:00:52.56 bitrate=1516.1kbits/s speed=91.3x elapsed=0:00:00.57    \nsize=   21760KiB time=00:01:57.24 bitrate=1520.3kbits/s speed=93.1x elapsed=0:00:01.25    \n[Parsed_loudnorm_0 @ 0xb36c05080] \nInput Integrated:    -14.0 LUFS\nInput True Peak:      -6.0 dBTP\nInput LRA:             5.4 LU\nInput Threshold:     -24.2 LUFS\n\nOutput Integrated:   -14.8 LUFS\nOutput True Peak:     -6.8 dBTP\nOutput LRA:            5.4 LU\nOutput Threshold:    -24.9 LUFS\n\nNormalization Type:   Linear\nTarget Offset:        -0.0 LU\n[out#0/wav @ 0xb36c04900] video:0KiB audio:29062KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000262%\nsize=   29063KiB time=00:02:35.00 bitrate=1536.0kbits/s speed=92.7x elapsed=0:00:01.67    \n",
+ "at": "2026-10-22T13:16:48Z",
+ "stats": {
+  "job_id": "20261022131539-0dd4b581",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-22T13:16:48Z",
+  "exit_code": 0,
+  "wall_s": 1.783,
+  "cpu_s": 1.951,
+  "input_bytes": 59520092,
+  "output_bytes": 29760078,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.033,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
