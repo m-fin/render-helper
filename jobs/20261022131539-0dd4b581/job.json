@@ -1,0 +1,29 @@
+{
+ "id": "20261022131539-0dd4b581",
+ "bot": "video-creator",
+ "created": "2026-10-22T13:15:39Z",
+ "cmd": [
+  "ffmpeg",
+  "-i",
+  "{in:drifthome_ep2_premix_155s_raw.wav}",
+  "-af",
+  "loudnorm=I=-14.8:TP=-2.0:LRA=20:measured_I=-14.07:measured_TP=-5.45:measured_LRA=5.40:measured_thresh=-24.19:offset=-0.86:linear=true:print_format=summary,aresample=48000,atrim=0:155,apad=whole_dur=155",
+  "-t",
+  "155",
+  "-ar",
+  "48000",
+  "-ac",
+  "2",
+  "-c:a",
+  "pcm_s16le",
+  "{out:drifthome_ep2_premix_155s.wav}"
+ ],
+ "inputs": [
+  "drifthome_ep2_premix_155s_raw.wav"
+ ],
+ "outputs": [
+  "drifthome_ep2_premix_155s.wav"
+ ],
+ "exact_encoder": true,
+ "sig": "1835d3dd496c1354340db006f60df75bce25de9f5f019722e49b47a9cb5a930b"
+}
