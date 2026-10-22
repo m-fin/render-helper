@@ -1,0 +1,25 @@
+{
+ "id": "20261022133036-be4107da",
+ "bot": "crave-builder",
+ "created": "2026-10-22T13:30:36Z",
+ "cmd": [
+  "capture"
+ ],
+ "inputs": [
+  "drifthome_m2_game.tar"
+ ],
+ "outputs": [
+  "drifthome_m2_seed1_1080x1920.mp4"
+ ],
+ "exact_encoder": true,
+ "capture": {
+  "bundle": "drifthome_m2_game.tar",
+  "seed": 1,
+  "w": 1080,
+  "h": 1920,
+  "limit": 0,
+  "out": "drifthome_m2_seed1_1080x1920.mp4",
+  "bundle_sha256": "6c9c9bd02cf0cf135a04a65035f6ce2784c556fec7a75b41d733914a6d443e16"
+ },
+ "sig": "4a458e3201d91960b3c59a81a4c04a080b918d983870044b997a30c209a59882"
+}
