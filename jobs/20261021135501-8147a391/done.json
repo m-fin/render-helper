@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": " mono, s16, 384 kb/s\n[aist#11:0/pcm_s16le @ 0xbe1019380] Guessed Channel Layout: mono\nInput #11, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/ep2_line12.wav':\n  Duration: 00:00:01.11, bitrate: 384 kb/s\n  Stream #11:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#12:0/pcm_s16le @ 0xbe1019500] Guessed Channel Layout: mono\nInput #12, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/ep2_line13.wav':\n  Duration: 00:00:01.00, bitrate: 384 kb/s\n  Stream #12:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#13:0/pcm_s16le @ 0xbe1019680] Guessed Channel Layout: mono\nInput #13, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/ep2_line14.wav':\n  Duration: 00:00:00.81, bitrate: 384 kb/s\n  Stream #13:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#14:0/pcm_s16le @ 0xbe1019800] Guessed Channel Layout: mono\nInput #14, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/ep2_line15.wav':\n  Duration: 00:00:01.02, bitrate: 384 kb/s\n  Stream #14:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\n[aist#15:0/pcm_s16le @ 0xbe1019980] Guessed Channel Layout: mono\nInput #15, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/ep2_line16.wav':\n  Duration: 00:00:01.62, bitrate: 384 kb/s\n  Stream #15:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, mono, s16, 384 kb/s\nInput #16, wav, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/in/drifthome_ep2_music.wav':\n  Metadata:\n    encoder         : Lavf63.1.102\n  Duration: 00:02:35.00, bitrate: 1058 kb/s\n  Stream #16:0: Audio: pcm_s24le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s32 (24 bit), 1058 kb/s\nStream mapping:\n  Stream #0:0 (pcm_s16le) -> aformat:default\n  Stream #1:0 (pcm_s16le) -> aformat:default\n  Stream #2:0 (pcm_s16le) -> aformat:default\n  Stream #3:0 (pcm_s16le) -> aformat:default\n  Stream #4:0 (pcm_s16le) -> aformat:default\n  Stream #5:0 (pcm_s16le) -> aformat:default\n  Stream #6:0 (pcm_s16le) -> aformat:default\n  Stream #7:0 (pcm_s16le) -> aformat:default\n  Stream #8:0 (pcm_s16le) -> aformat:default\n  Stream #9:0 (pcm_s16le) -> aformat:default\n  Stream #10:0 (pcm_s16le) -> aformat:default\n  Stream #11:0 (pcm_s16le) -> aformat:default\n  Stream #12:0 (pcm_s16le) -> aformat:default\n  Stream #13:0 (pcm_s16le) -> aformat:default\n  Stream #14:0 (pcm_s16le) -> aformat:default\n  Stream #15:0 (pcm_s16le) -> aformat:default\n  Stream #16:0 (pcm_s24le) -> aresample:default\n  alimiter:default -> Stream #0:0 (pcm_f32le)\nOutput #0, wav, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261021135501-8147a391-88332i_p/out/drifthome_ep2_premix_155s_raw.wav':\n  Metadata:\n    ISFT            : Lavf63.1.102\n  Stream #0:0: Audio: pcm_f32le ([3][0][0][0] / 0x0003), 48000 Hz, stereo, flt, 3072 kb/s\n    Metadata:\n      encoder         : Lavc63.1.102 pcm_f32le\nsize=    9472KiB time=00:00:25.63 bitrate=3027.0kbits/s speed=42.8x elapsed=0:00:00.59    \nsize=   17920KiB time=00:00:47.96 bitrate=3060.5kbits/s speed=40.1x elapsed=0:00:01.19    \nsize=   18432KiB time=00:00:49.50 bitrate=3050.2kbits/s speed=26.7x elapsed=0:00:01.85    \nsize=   19456KiB time=00:00:52.06 bitrate=3061.4kbits/s speed=  21x elapsed=0:00:02.47    \nsize=   24320KiB time=00:01:05.11 bitrate=3059.5kbits/s speed=21.4x elapsed=0:00:03.04    \nsize=   38144KiB time=00:01:42.16 bitrate=3058.5kbits/s speed=28.2x elapsed=0:00:03.62    \nsize=   53248KiB time=00:02:22.68 bitrate=3057.1kbits/s speed=33.8x elapsed=0:00:04.21    \n[out#0/wav @ 0xbe104da40] video:0KiB audio:58125KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000155%\nsize=   58125KiB time=00:02:35.00 bitrate=3072.0kbits/s speed=34.9x elapsed=0:00:04.43    \n",
+ "at": "2026-10-22T02:59:59Z",
+ "stats": {
+  "job_id": "20261021135501-8147a391",
+  "bot": "video-creator",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-22T02:59:59Z",
+  "exit_code": 0,
+  "wall_s": 4.912,
+  "cpu_s": 1.533,
+  "input_bytes": 21749418,
+  "output_bytes": 59520092,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.026,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
