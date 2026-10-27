@@ -1,0 +1,35 @@
+{
+ "id": "20261027030317-08b572a9",
+ "bot": "shorty",
+ "created": "2026-10-27T03:03:17Z",
+ "cmd": [
+  "ffmpeg",
+  "-hide_banner",
+  "-y",
+  "-i",
+  "{in:s1.mp4}",
+  "-i",
+  "{in:s2.mp4}",
+  "-i",
+  "{in:s3.mp4}",
+  "-/filter_complex",
+  "{in:qa_graph.txt}",
+  "-map",
+  "[out]",
+  "-frames:v",
+  "1",
+  "-update",
+  "1",
+  "{out:qa.png}"
+ ],
+ "inputs": [
+  "s1.mp4",
+  "s2.mp4",
+  "s3.mp4",
+  "qa_graph.txt"
+ ],
+ "outputs": [
+  "qa.png"
+ ],
+ "sig": "89014de8ce337eef99633a73633bc1cc5fdedcd92f13f3d90bbc0c3fae4b4617"
+}
