@@ -1,0 +1,22 @@
+{
+ "exit_code": 0,
+ "log_tail": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261027030317-08b572a9-zme2fg60/in/s1.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:00:27.57, start: 0.000000, bitrate: 7655 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920, 7456 kb/s, SAR 1:1 DAR 9:16, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 192 kb/s (default)\n    Metadata:\n      handler_name    : SoundHandler\nInput #1, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261027030317-08b572a9-zme2fg60/in/s2.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:00:37.17, start: 0.000000, bitrate: 4499 kb/s\n  Stream #1:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920, 4300 kb/s, SAR 1:1 DAR 9:16, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n  Stream #1:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 191 kb/s (default)\n    Metadata:\n      handler_name    : SoundHandler\nInput #2, mov,mp4,m4a,3gp,3g2,mj2, from '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261027030317-08b572a9-zme2fg60/in/s3.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Duration: 00:00:21.20, start: 0.000000, bitrate: 2777 kb/s\n  Stream #2:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920, 2580 kb/s, SAR 1:1 DAR 9:16, 30 fps, 30 tbr, 15360 tbn (default)\n    Metadata:\n      handler_name    : VideoHandler\n      encoder         : Lavc63.1.102 h264_videotoolbox\n  Stream #2:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 189 kb/s (default)\n    Metadata:\n      handler_name    : SoundHandler\nStream mapping:\n  Stream #0:0 (h264) -> select:default\n  Stream #1:0 (h264) -> select:default\n  Stream #2:0 (h264) -> select:default\n  vstack:default -> Stream #0:0 (png)\nOutput #0, image2, to '/var/folders/j3/13h4fzr53m7fpfc82d4r1lym0000gn/T/rh-20261027030317-08b572a9-zme2fg60/out/qa.png':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    encoder         : Lavf63.1.102\n  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1080x1440 [SAR 1:1 DAR 3:4], q=2-31, 200 kb/s, 7.50 fps, 7.50 tbn\n    Metadata:\n      encoder         : Lavc63.1.102 png\nframe=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A dup=8 drop=0 speed=N/A elapsed=0:04:01.85    \n[out#0/image2 @ 0x7cf030a80] video:950KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nframe=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.13 bitrate=N/A dup=8 drop=0 speed=0.000549x elapsed=0:04:02.68    \n",
+ "at": "2026-10-27T03:09:58Z",
+ "stats": {
+  "job_id": "20261027030317-08b572a9",
+  "bot": "shorty",
+  "worker": "mac-902637526d13",
+  "finished": "2026-10-27T03:09:58Z",
+  "exit_code": 0,
+  "wall_s": 248.23,
+  "cpu_s": 20.524,
+  "input_bytes": 54645186,
+  "output_bytes": 972886,
+  "cloud_cpu_minutes_saved_estimate": {
+   "value": 0.342,
+   "is_estimate": true,
+   "formula": "cpu_s / 60 * 1.0 (CLOUD_CPU_FACTOR, assumed)",
+   "basis": "cpu_s"
+  }
+ }
+}
